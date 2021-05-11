@@ -69,6 +69,20 @@ export class PipelineStack extends CDK.Stack {
       ],
     })
 
+    // Custom IAM Role to attach distro to hosted zone
+    const roleCdk = new IAM.Role(this, 'BuildCdkRole', {
+      assumedBy: new IAM.ServicePrincipal('codebuild.amazonaws.com'),
+      path: '/',
+    })
+
+    roleCdk.addToPolicy(
+      new IAM.PolicyStatement({
+        actions: ['route53:ListHostedZonesByName'],
+        resources: ['*'],
+        effect: IAM.Effect.ALLOW,
+      }),
+    )
+
     // AWS CodePipeline stage to build CRA website and CDK resources
     pipeline.addStage({
       stageName: 'Build',
@@ -82,6 +96,7 @@ export class PipelineStack extends CDK.Stack {
           input: outputSources, // Restore files from artifact
           outputs: [outputCDK], // Store files in artifact
           runOrder: 10,
+          role: roleCdk,
         }),
         new CodePipelineAction.CodeBuildAction({
           actionName: 'Assets',
