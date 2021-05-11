@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - yarn install
+  build:
+    commands:
+      - mkdir .server
+      - cp -rfv $CODEBUILD_SRC_DIR_assets ./build
+      - yarn build:server
+      - yarn package:server
+
+artifacts:
+  base-directory: .server
+  files:
+    - '**/*'
+
+cache:
+  paths:
+    - 'node_modules/**/*'

@@ -1,0 +1,78 @@
+{
+  "name": "you54fdotcom",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "koa": "^2.11.0",
+    "koa-route": "^3.2.0",
+    "koa-router": "^8.0.6",
+    "koa-static": "^5.0.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-helmet-async": "^1.0.4",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "serverless-http": "^2.3.1",
+    "styled-components": "^5.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "clean:server": "rimraf .server",
+    "run:local": "npx ts-node --project tsconfig.server.json server/handler/local.ts",
+    "build:server": "tsc --project tsconfig.server.json",
+    "cdn:invalidate": "aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths \"/*\"",
+    "package:server": "cp -rf build .server/build; yarn install --prod --silent --no-lockfile --non-interactive --modules-folder .server/node_modules",
+    "cdk": "cdk"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@aws-cdk/aws-apigateway": "^1.22.0",
+    "@aws-cdk/aws-certificatemanager": "^1.22.0",
+    "@aws-cdk/aws-cloudfront": "^1.22.0",
+    "@aws-cdk/aws-codebuild": "^1.22.0",
+    "@aws-cdk/aws-codedeploy": "^1.22.0",
+    "@aws-cdk/aws-codepipeline": "^1.22.0",
+    "@aws-cdk/aws-codepipeline-actions": "^1.22.0",
+    "@aws-cdk/aws-lambda": "^1.22.0",
+    "@aws-cdk/aws-route53": "^1.22.0",
+    "@aws-cdk/aws-route53-targets": "^1.22.0",
+    "@aws-cdk/aws-s3": "^1.22.0",
+    "@aws-cdk/aws-ssm": "^1.22.0",
+    "@aws-cdk/core": "^1.22.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/koa-route": "^3.2.4",
+    "@types/koa-static": "^4.0.1",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-helmet": "^5.0.15",
+    "@types/react-router": "^5.1.4",
+    "@types/react-router-dom": "^5.1.3",
+    "@types/styled-components": "^4.4.2",
+    "aws-cdk": "^1.22.0",
+    "react-scripts": "3.3.0",
+    "rimraf": "^3.0.1",
+    "ts-node": "^8.6.2",
+    "typescript": "~3.7.2"
+  }
+}
