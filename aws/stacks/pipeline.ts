@@ -61,6 +61,7 @@ export class PipelineStack extends CDK.Stack {
           actionName: 'Checkout',
           owner: props.github.owner,
           repo: props.github.repository,
+          branch: 'main',
           oauthToken: CDK.SecretValue.secretsManager('GitHubToken'),
           output: outputSources, // Store files in artifact
           trigger: CodePipelineAction.GitHubTrigger.WEBHOOK,
