@@ -13,7 +13,7 @@ export class RenderStack extends CDK.Stack {
   constructor(app: CDK.App, id: string, props: RenderProps) {
     super(app, id, props)
 
-    this.code = Lambda.Code.cfnParameters({
+    this.code = Lambda.Code.fromCfnParameters({
       bucketNameParam: new CDK.CfnParameter(this, 'CodeBucketName'),
       objectKeyParam: new CDK.CfnParameter(this, 'CodeBucketObjectKey'),
     })

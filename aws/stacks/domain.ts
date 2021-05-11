@@ -1,7 +1,9 @@
 import * as CloudFront from '@aws-cdk/aws-cloudfront'
+import { ARecord, HostedZone, RecordTarget } from '@aws-cdk/aws-route53'
 import * as S3 from '@aws-cdk/aws-s3'
 import * as SSM from '@aws-cdk/aws-ssm'
 import * as CDK from '@aws-cdk/core'
+import { CloudFrontTarget } from '@aws-cdk/aws-route53-targets'
 
 import { getParam } from '../lib/helpers'
 
@@ -64,10 +66,29 @@ export class DomainStack extends CDK.Stack {
       ],
     })
 
+    const domain = 'you54f.co.uk'
+    const hostedZone = new HostedZone(this, 'HostedZone', {
+      zoneName: domain,
+    })
+
+    const cloudfrontTarget = RecordTarget.fromAlias(new CloudFrontTarget(distribution))
+
+    new ARecord(this, 'ARecord', {
+      zone: hostedZone,
+      recordName: `${domain}`,
+      target: cloudfrontTarget,
+    })
+
+    new ARecord(this, 'WildCardARecord', {
+      zone: hostedZone,
+      recordName: `*.${domain}`,
+      target: cloudfrontTarget,
+    })
+
     new SSM.StringParameter(this, 'SSMCloudFrontDomainName', {
       description: 'CloudFront DomainName',
       parameterName: `/${props.name}/CloudFront/DomainName`,
-      stringValue: distribution.domainName,
+      stringValue: distribution.distributionDomainName,
     })
 
     new SSM.StringParameter(this, 'SSMCloudFrontDistributionID', {
