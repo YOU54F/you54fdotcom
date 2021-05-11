@@ -67,8 +67,8 @@ export class DomainStack extends CDK.Stack {
     })
 
     const domain = 'you54f.co.uk'
-    const hostedZone = new HostedZone(this, 'HostedZone', {
-      zoneName: domain,
+    const hostedZone = HostedZone.fromLookup(this, 'Zone', {
+      domainName: domain,
     })
 
     const cloudfrontTarget = RecordTarget.fromAlias(new CloudFrontTarget(distribution))
@@ -98,3 +98,15 @@ export class DomainStack extends CDK.Stack {
     })
   }
 }
+
+// const certificate = new DnsValidatedCertificate(this, 'Certificate', {
+//   region: 'us-east-1',
+//   hostedZone: hostedZone,
+//   domainName: domain,
+//   subjectAlternativeNames: [`*.${domain}`],
+//   validationDomains: {
+//     [domain]: domain,
+//     [`*.${domain}`]: domain,
+//   },
+//   validationMethod: ValidationMethod.DNS,
+// })
