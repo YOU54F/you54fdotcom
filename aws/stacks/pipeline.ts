@@ -47,19 +47,24 @@ export class PipelineStack extends CDK.Stack {
     const outputRender = new CodePipeline.Artifact('render')
     const outputCDK = new CodePipeline.Artifact('cdk')
 
+    const buildRole = new IAM.Role(this, 'BuildRole', {
+      assumedBy: new IAM.ServicePrincipal('codebuild.amazonaws.com'),
+      path: '/',
+    })
+
     const listHostZonesByNamePolicy = new IAM.PolicyStatement({
       actions: ['route53:ListHostedZonesByName'],
       resources: ['*'],
       effect: IAM.Effect.ALLOW,
     })
 
+    buildRole.addToPrincipalPolicy(listHostZonesByNamePolicy)
+
     // Create AWS CodePipeline Pipeline
     const pipeline = new CodePipeline.Pipeline(this, 'Pipeline', {
       pipelineName: props.name,
       restartExecutionOnUpdate: false,
     })
-
-    pipeline.role.addToPrincipalPolicy(listHostZonesByNamePolicy)
 
     // AWS CodePipeline stage to clone sources from GitHub repository
     pipeline.addStage({
@@ -86,6 +91,7 @@ export class PipelineStack extends CDK.Stack {
           project: new CodeBuild.PipelineProject(this, 'BuildCDK', {
             projectName: 'CDK',
             buildSpec: CodeBuild.BuildSpec.fromSourceFilename('./aws/buildspecs/cdk.yml'),
+            role: buildRole,
           }),
           input: outputSources, // Restore files from artifact
           outputs: [outputCDK], // Store files in artifact
