@@ -47,10 +47,24 @@ export class PipelineStack extends CDK.Stack {
     const outputRender = new CodePipeline.Artifact('render')
     const outputCDK = new CodePipeline.Artifact('cdk')
 
+    const listHostZonesByNamePolicy = new IAM.Role(this, 'BuildCdkRole', {
+      assumedBy: new IAM.ServicePrincipal('codebuild.amazonaws.com'),
+      path: '/',
+    })
+
+    listHostZonesByNamePolicy.addToPolicy(
+      new IAM.PolicyStatement({
+        actions: ['route53:ListHostedZonesByName'],
+        resources: ['*'],
+        effect: IAM.Effect.ALLOW,
+      }),
+    )
+
     // Create AWS CodePipeline Pipeline
     const pipeline = new CodePipeline.Pipeline(this, 'Pipeline', {
       pipelineName: props.name,
       restartExecutionOnUpdate: false,
+      role: listHostZonesByNamePolicy,
     })
 
     // AWS CodePipeline stage to clone sources from GitHub repository
@@ -69,20 +83,6 @@ export class PipelineStack extends CDK.Stack {
       ],
     })
 
-    // Custom IAM Role to attach distro to hosted zone
-    const roleCdk = new IAM.Role(this, 'BuildCdkRole', {
-      assumedBy: new IAM.ServicePrincipal('codebuild.amazonaws.com'),
-      path: '/',
-    })
-
-    roleCdk.addToPolicy(
-      new IAM.PolicyStatement({
-        actions: ['route53:ListHostedZonesByName'],
-        resources: ['*'],
-        effect: IAM.Effect.ALLOW,
-      }),
-    )
-
     // AWS CodePipeline stage to build CRA website and CDK resources
     pipeline.addStage({
       stageName: 'Build',
@@ -96,7 +96,6 @@ export class PipelineStack extends CDK.Stack {
           input: outputSources, // Restore files from artifact
           outputs: [outputCDK], // Store files in artifact
           runOrder: 10,
-          role: roleCdk,
         }),
         new CodePipelineAction.CodeBuildAction({
           actionName: 'Assets',
