@@ -1,5 +1,5 @@
 import * as CloudFront from '@aws-cdk/aws-cloudfront'
-import { ARecord, HostedZone, RecordTarget } from '@aws-cdk/aws-route53'
+import { ARecord, HostedZone, RecordTarget, AaaaRecord } from '@aws-cdk/aws-route53'
 import * as S3 from '@aws-cdk/aws-s3'
 import * as SSM from '@aws-cdk/aws-ssm'
 import * as CDK from '@aws-cdk/core'
@@ -9,6 +9,8 @@ import { getParam } from '../lib/helpers'
 
 export interface DomainProps extends CDK.StackProps {
   name: string
+  certificateArn: string
+  domain: string
 }
 
 export class DomainStack extends CDK.Stack {
@@ -17,6 +19,9 @@ export class DomainStack extends CDK.Stack {
 
     const apiID = getParam(this, `/${props.name}/APIGateway/ApiId`)
     const apiDomainName = `${apiID}.execute-api.${this.region}.amazonaws.com`
+    const domain = props.domain
+    const wildCardDomain = `*.${domain}`
+    const wwwDomain = `www.${domain}`
 
     const assetsBucket = S3.Bucket.fromBucketAttributes(this, 'AssetsBucket', {
       bucketName: getParam(this, `/${props.name}/S3/Assets/Name`),
@@ -64,9 +69,15 @@ export class DomainStack extends CDK.Stack {
           ],
         },
       ],
+      viewerCertificate: {
+        aliases: [domain, wildCardDomain, wwwDomain],
+        props: {
+          acmCertificateArn: props.certificateArn,
+          sslSupportMethod: 'sni-only',
+        },
+      },
     })
 
-    const domain = 'you54f.co.uk'
     const hostedZone = HostedZone.fromLookup(this, 'Zone', {
       domainName: domain,
     })
@@ -81,7 +92,19 @@ export class DomainStack extends CDK.Stack {
 
     new ARecord(this, 'WildCardARecord', {
       zone: hostedZone,
-      recordName: `*.${domain}`,
+      recordName: wildCardDomain,
+      target: cloudfrontTarget,
+    })
+
+    new AaaaRecord(this, 'AaaaRecord', {
+      zone: hostedZone,
+      recordName: `${domain}`,
+      target: cloudfrontTarget,
+    })
+
+    new AaaaRecord(this, 'WildCardAaaaRecord', {
+      zone: hostedZone,
+      recordName: wildCardDomain,
       target: cloudfrontTarget,
     })
 
@@ -98,15 +121,3 @@ export class DomainStack extends CDK.Stack {
     })
   }
 }
-
-// const certificate = new DnsValidatedCertificate(this, 'Certificate', {
-//   region: 'us-east-1',
-//   hostedZone: hostedZone,
-//   domainName: domain,
-//   subjectAlternativeNames: [`*.${domain}`],
-//   validationDomains: {
-//     [domain]: domain,
-//     [`*.${domain}`]: domain,
-//   },
-//   validationMethod: ValidationMethod.DNS,
-// })
