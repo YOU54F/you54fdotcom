@@ -6,9 +6,8 @@ This site is developed using
 - [React Redux](https://react-redux.js.org/).
 - [tailwindcss](https://tailwindcss.com/).
 
-Hosted on various providers
+Hosted on
 
 - [Vercel](https://vercel.com/).
-- [Github Pages](https://pages.github.com/).
 
 The source code is hosted [here](https://github.com/you54f/you54fdotcom).
