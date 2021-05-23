@@ -1,0 +1,4 @@
+- **ls** [List shortcuts]
+- **about** [about this app]
+- **clear** [clear screen]
+- **help** [show this message]

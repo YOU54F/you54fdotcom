@@ -99,6 +99,7 @@ const bootloader = () => (
     {bootItem("Ubuntu", "ubuntu")}
     {bootItem("Repl Workspace", "replworkspace")}
     {bootItem("Embedded Repl", "replembedded")}
+    {bootItem("Blog 🚧 - In progress", "blog")}
   </span>
 );
 
