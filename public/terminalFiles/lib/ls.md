@@ -1,0 +1,13 @@
+- **blog 1** configuring-cypress-to-work-with-iframes-cross-origin-sites.md
+- **blog 2** cross-browser-testing-without-the-browser.md
+- **blog 3** cypress-edge-now-available-for-windows.md
+- **blog 4** dynamically-generate-data-in-cypress-from-csv-xlsx.md
+- **blog 5** jest-pact-a-jest-adaptor-to-help-write-pact-files-with-ease.md
+- **blog 6** just-because-youre-paranoid-doesnt-mean-they-arent-after-you.md
+- **blog 7** protecting-your-api-development-workflows-with-swagger-openapi-pact-io.md
+- **blog 8** securing-the-pact-broker-with-nginx-letsencrypt.md
+- **blog 9** slack-reporting-for-cypress-io.md
+- **blog 10** the-journey-begins.md
+- **blog 11** the-new-chromium-based-microsoft-edge-for-mac-has-been-leaked - and-it-works-with-cypress-and-now-you-can-test-it-too.md
+- **blog 12** the-new-chromium-based-microsoft-edge-for-mac-has-been-leaked - and-it-works-with-cypress.md
+- **blog 13** tinkering-with-the-touchbar.md
