@@ -15,6 +15,12 @@ export default function BlogTerminal() {
     </div>
   );
 
+  const blogPostRouter = (postUrl: string) => (
+    <Suspense fallback={<div>Loading...</div>}>
+      <GetBlogPost filePath={postUrl} />
+    </Suspense>
+  );
+
   // Terminal commands
   const commands = {
     help: (
@@ -35,29 +41,55 @@ export default function BlogTerminal() {
     blog: (arg: string) => {
       switch (Number(arg)) {
         case 1:
-          return (
-            <Suspense fallback={<div>Loading...</div>}>
-              <GetBlogPost
-                filePath={
-                  "terminalFiles/blogs/configuring-cypress-to-work-with-iframes-cross-origin-sites.md"
-                }
-              />
-            </Suspense>
+          return blogPostRouter(
+            "terminalFiles/blogs/configuring-cypress-to-work-with-iframes-cross-origin-sites.md"
           );
         case 2:
-          return (
-            <Suspense fallback={<div>Loading...</div>}>
-              <GetBlogPost
-                filePath={"terminalFiles/blogs/the-journey-begins.md"}
-              />
-            </Suspense>
+          return blogPostRouter(
+            "terminalFiles/blogs/cross-browser-testing-without-the-browser.md"
           );
+        case 3:
+          return blogPostRouter(
+            "terminalFiles/blogs/cypress-edge-now-available-for-windows.md"
+          );
+        case 4:
+          return blogPostRouter(
+            "terminalFiles/blogs/dynamically-generate-data-in-cypress-from-csv-xlsx.md"
+          );
+        case 5:
+          return blogPostRouter(
+            "terminalFiles/blogs/jest-pact-a-jest-adaptor-to-help-write-pact-files-with-ease.md"
+          );
+        case 6:
+          return blogPostRouter(
+            "terminalFiles/blogs/just-because-youre-paranoid-doesnt-mean-they-arent-after-you.md"
+          );
+        case 7:
+          return blogPostRouter(
+            "terminalFiles/blogs/protecting-your-api-development-workflows-with-swagger-openapi-pact-io.md"
+          );
+        case 8:
+          return blogPostRouter(
+            "terminalFiles/blogs/securing-the-pact-broker-with-nginx-letsencrypt.md"
+          );
+        case 9:
+          return blogPostRouter(
+            "terminalFiles/blogs/slack-reporting-for-cypress-io.md"
+          );
+        case 10:
+          return blogPostRouter("terminalFiles/blogs/the-journey-begins.md");
+        case 11:
+          return blogPostRouter(
+            "terminalFiles/blogs/the-new-chromium-based-microsoft-edge-for-mac-has-been-leaked - and-it-works-with-cypress-and-now-you-can-test-it-too/md"
+          );
+        case 12:
+          return blogPostRouter(
+            "terminalFiles/blogs/the-new-chromium-based-microsoft-edge-for-mac-has-been-leaked - and-it-works-with-cypress.md"
+          );
+        case 13:
+          return blogPostRouter("tinkering-with-the-touchbar.md");
         default:
-          return (
-            <Suspense fallback={<div>Loading...</div>}>
-              <GetBlogPost filePath={"terminalFiles/lib/ls.md"} />
-            </Suspense>
-          );
+          return blogPostRouter("terminalFiles/lib/ls.md");
       }
     },
   };
