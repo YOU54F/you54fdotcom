@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react'
-import { useLocation, NavLink } from 'react-router-dom'
-import styled from 'styled-components'
+import React from "react";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
-const activeClassName = 'active'
+const activeClassName = "active";
 
 const StyledLink = styled(NavLink).attrs({
   activeClassName,
@@ -23,32 +23,25 @@ const StyledLink = styled(NavLink).attrs({
   &.${activeClassName} {
     color: red;
   }
-`
+`;
 
 const ListItem = styled.li`
   display: inline-block;
   padding: 5px 10px;
-`
+`;
 
 const List = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
-`
+`;
 
 const Wrapper = styled.div`
   padding-top: 15px;
-`
+  background-color: dark;
+`;
 
 export const Navigation = () => {
-  const location = useLocation()
-
-  const isDetailsActive = useCallback(() => {
-    return location.pathname.indexOf('details/') > -1
-  }, [location.pathname])
-
-  const random = Math.random().toString(36).substring(2, 15)
-
   return (
     <Wrapper>
       <List>
@@ -57,17 +50,17 @@ export const Navigation = () => {
             Home
           </StyledLink>
         </ListItem>
-
         <ListItem>
-          <StyledLink
-            to={'/details/' + random}
-            activeClassName={activeClassName}
-            isActive={isDetailsActive}
-          >
-            Dynamic
+          <StyledLink to="/repl" activeClassName={activeClassName} exact>
+            repl
+          </StyledLink>
+        </ListItem>
+        <ListItem>
+          <StyledLink to="/replit" activeClassName={activeClassName} exact>
+            replit
           </StyledLink>
         </ListItem>
       </List>
     </Wrapper>
-  )
-}
+  );
+};

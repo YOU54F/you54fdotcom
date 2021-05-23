@@ -1,5 +1,5 @@
-import React from 'react'
-import { Helmet } from 'react-helmet-async'
+import React from "react";
+import { Helmet } from "react-helmet-async";
 
 export const NotFound = () => (
   <>
@@ -8,4 +8,4 @@ export const NotFound = () => (
     </Helmet>
     <h2>Not Found</h2>
   </>
-)
+);
