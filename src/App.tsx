@@ -11,7 +11,7 @@ import UbuntuApp from "./operatingSystems/Ubuntu/App";
 import MacOSApp from "./operatingSystems/macOS";
 import { ReplEmbedded } from "./components/ReplIt";
 import { ReplWorkspace } from "./components/Repl";
-import { TerminalContextProvider } from "react-terminal";
+import { TerminalContextProvider } from "./apps/react-terminal/src/index";
 import { Provider } from "react-redux";
 import store from "./operatingSystems/macOS/redux/store";
 import BlogTerminal from "pages/BlogTerminal";

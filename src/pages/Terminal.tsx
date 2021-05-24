@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import "../styles/devices.min.css";
 
-import { ReactTerminal } from "react-terminal";
+import { ReactTerminal } from "../apps/react-terminal/src/index";
 import styled from "styled-components";
 import { DeviceFrame } from "../components/DeviceFrame";
 import appContent from "../config";

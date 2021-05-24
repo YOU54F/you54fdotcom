@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { ReactTerminal } from "react-terminal";
+import { ReactTerminal } from "../apps/react-terminal/src/index";
 import { createGlobalStyle } from "styled-components";
 import GetBlogPost from "../components/GetBlogPost";
 
