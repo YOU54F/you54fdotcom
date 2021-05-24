@@ -141,6 +141,21 @@ const lengthCommand: {
     autoCompleteHandler: autoComplete, // Function that returns results for autocomplete for given command
     description: "Calculates the length of a given text file", // Description that will be show from "help" command
   },
+  tail: {
+    handler: function tail(fileSystem, currentPath, targetPath, options) {
+      return new Promise((resolve, reject): void => {
+        if (options === "-r") {
+          resolve({
+            commandResult: "echo " + targetPath + "...",
+          });
+        } else {
+          reject(`Can't remove ${targetPath}. It is a directory.`);
+        }
+      });
+    },
+    autoCompleteHandler: autoComplete, // Function that returns results for autocomplete for given command
+    description: "This command is used for tailing a specific file.", // Description that will be show from "help" command
+  },
 };
 
 const stuff: TerminalProps = {
@@ -156,6 +171,20 @@ export const Termy = () => (
     ,
   </StyledTermy>
 );
+
+// Hello! You should be able to accept custom argument like I did for the rm command here: https://github.com/ctaylo21/termy-the-terminal/blob/master/src/commands/rm.ts#L53
+
+// an optional options string gets passed to each command defined by this interface:
+
+// export interface CommandHandler {
+//   (
+//     fileSystem?: FileSystem,
+//     currentPath?: string,
+//     targetPath?: string,
+//     options?: string,
+//   ): Promise<CommandResponse>;
+// }
+// That could definitely be documented better, so I'll make a todo to knock that out. Thanks!
 
 const StyledTermy = styled.div`
   #terminal-wrapper {
