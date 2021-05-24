@@ -25,9 +25,9 @@ Problems you may encounter
 
 Simply by setting `chromeWebSecurity` to false in your `cypress.json`
 
-```
+```json
 {
-"chromeWebSecurity": false
+  "chromeWebSecurity": false
 }
 ```
 
@@ -68,17 +68,19 @@ We want to disable the following features
 
 So lets add the following to `cypress/plugins/index.js`
 
-```
-const path = require('path');
+```javascript
+const path = require("path");
 
 module.exports = (on, config) => {
-on('before:browser:launch', (browser = {}, args) => {
-console.log(config, browser, args);
-if (browser.name === 'chrome') {
-args.push("--disable-features=CrossSiteDocumentBlockingIfIsolating,CrossSiteDocumentBlockingAlways,IsolateOrigins,site-per-process");
-}
-return args;
-});
+  on("before:browser:launch", (browser = {}, args) => {
+    console.log(config, browser, args);
+    if (browser.name === "chrome") {
+      args.push(
+        "--disable-features=CrossSiteDocumentBlockingIfIsolating,CrossSiteDocumentBlockingAlways,IsolateOrigins,site-per-process"
+      );
+    }
+    return args;
+  });
 };
 ```
 
@@ -91,18 +93,21 @@ We can use [Ignore X-Frame headers chrome extension](https://chrome.google.com/
 
 add the following to `cypress/index.js`
 
-```
-const path = require('path');
+```javascript
+const path = require("path");
 
 module.exports = (on, config) => {
-on('before:browser:launch', (browser = {}, args) => {
-console.log(config, browser, args);
-if (browser.name === 'chrome') {
-const ignoreXFrameHeadersExtension = path.join(\_\_dirname, '../extensions/ignore-x-frame-headers');
-args.push(args.push(`--load-extension=${ignoreXFrameHeadersExtension}`));
-}
-return args;
-});
+  on("before:browser:launch", (browser = {}, args) => {
+    console.log(config, browser, args);
+    if (browser.name === "chrome") {
+      const ignoreXFrameHeadersExtension = path.join(
+        __dirname,
+        "../extensions/ignore-x-frame-headers"
+      );
+      args.push(args.push(`--load-extension=${ignoreXFrameHeadersExtension}`));
+    }
+    return args;
+  });
 };
 ```
 
@@ -112,32 +117,37 @@ We can also automate the download of the extension for CI systems.
 
 put the following in `package.json`
 
-```
+```json
 {
-"scripts": {
-"download-extension": "ced gleekbfjekiniecknbkamfmkohkpodhe extensions/ignore-x-frame-headers"
-},
-"dependencies": {
-"chrome-ext-downloader": "^1.0.4",
-}
+  "scripts": {
+    "download-extension": "ced gleekbfjekiniecknbkamfmkohkpodhe extensions/ignore-x-frame-headers"
+  },
+  "dependencies": {
+    "chrome-ext-downloader": "^1.0.4"
+  }
 }
 ```
 
 Our final `cypress/plugins/index.js` file incorporating both changes, will look like below
 
-```
-const path = require('path');
+```javascript
+const path = require("path");
 
 module.exports = (on, config) => {
-on('before:browser:launch', (browser = {}, args) => {
-console.log(config, browser, args);
-if (browser.name === 'chrome') {
-const ignoreXFrameHeadersExtension = path.join(\_\_dirname, '../extensions/ignore-x-frame-headers');
-args.push(args.push(`--load-extension=${ignoreXFrameHeadersExtension}`));
-args.push("--disable-features=CrossSiteDocumentBlockingIfIsolating,CrossSiteDocumentBlockingAlways,IsolateOrigins,site-per-process");
-}
-return args;
-});
+  on("before:browser:launch", (browser = {}, args) => {
+    console.log(config, browser, args);
+    if (browser.name === "chrome") {
+      const ignoreXFrameHeadersExtension = path.join(
+        __dirname,
+        "../extensions/ignore-x-frame-headers"
+      );
+      args.push(args.push(`--load-extension=${ignoreXFrameHeadersExtension}`));
+      args.push(
+        "--disable-features=CrossSiteDocumentBlockingIfIsolating,CrossSiteDocumentBlockingAlways,IsolateOrigins,site-per-process"
+      );
+    }
+    return args;
+  });
 };
 ```
 

@@ -12,7 +12,7 @@ export const appContent: GeneralAppContent = {
   githubAuthorUrl: "https://github.com/you54f",
   githubRepoUrl: "https://github.com/you54f/you54fdotcom",
   github1sRepoUrl: "https://github1s.com/you54f/you54fdotcom",
-  vsCodeStartUrl: "https://github1s.com/you54f/you54fdotcom/blob/main/App.tsc",
+  vsCodeStartUrl: "https://github1s.com/you54f/you54fdotcom/blob/main/App.tsx",
   websiteUrl: "https://you54f.com",
   blogUrl: "https://blog.you54f.com",
   experienceDuration: experience(),

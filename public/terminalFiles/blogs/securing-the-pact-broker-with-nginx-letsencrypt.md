@@ -26,7 +26,7 @@ If you haven't already read my post about using Pact & Swagger to compliment you
 
 ## Additional Notes
 
-- This example will use a dockerised postgres instance, as described in the main pact\_broker-docker readme, just so you can run the example end-to-end.
+- This example will use a dockerised postgres instance, as described in the main pact_broker-docker readme, just so you can run the example end-to-end.
 - If you are able to use your cloud provider to sign your certificates, then you may not need to use lets-encrypt. In my example, I am using a self-managed AWS EC2 instance, which is unable to utilise AWS certificate manager, as you are unable to download the generated ceritifcates. If you are using Fargate, this is not an issue.
 
 ## Initial Setup
@@ -34,9 +34,9 @@ If you haven't already read my post about using Pact & Swagger to compliment you
 1. [Install Docker](https://docs.docker.com/engine/installation/) on your instance
 2. Copy the contents of `ssl_letsencrypt` to your instance and rename to `pact-broker`
 3. Replace the following occurances found in the `*.sh` & `docker-compose.yml` files in `pact-broker` & `pact-broker/lets-encrypt`
-    - domain\_name - Replace with your registered domain name
-    - email\_address - Replace with your email address. It should match the registered domain
-    - username - Replace with the name of your user (it is assumed your folder will live in `/home/username/pact-broker` but you can change to suit)
+   - domain_name - Replace with your registered domain name
+   - email_address - Replace with your email address. It should match the registered domain
+   - username - Replace with the name of your user (it is assumed your folder will live in `/home/username/pact-broker` but you can change to suit)
 4. Rename `.env.example` to `.env`.
 
 ## Get to know your environment file
@@ -45,16 +45,16 @@ The `.env` file contains the credentials we will pass into the docker-compose fi
 
 The database variables are setup to talk to the postgres database loaded via docker-compose.
 
-\[code lang=bash\]
-PACT\_BROKER\_DATABASE\_USERNAME=postgres
-PACT\_BROKER\_DATABASE\_PASSWORD=postgres
-PACT\_BROKER\_DATABASE\_HOST=postgres
-PACT\_BROKER\_DATABASE\_NAME=postgres
-PACT\_BROKER\_BASIC\_AUTH\_USERNAME=readwrite
-PACT\_BROKER\_BASIC\_AUTH\_PASSWORD=readwrite
-PACT\_BROKER\_BASIC\_AUTH\_READ\_ONLY\_USERNAME=readonly
-PACT\_BROKER\_BASIC\_AUTH\_READ\_ONLY\_PASSWORD=readonly
-\[/code\]
+```bash
+PACT_BROKER_DATABASE_USERNAME=postgres
+PACT_BROKER_DATABASE_PASSWORD=postgres
+PACT_BROKER_DATABASE_HOST=postgres
+PACT_BROKER_DATABASE_NAME=postgres
+PACT_BROKER_BASIC_AUTH_USERNAME=readwrite
+PACT_BROKER_BASIC_AUTH_PASSWORD=readwrite
+PACT_BROKER_BASIC_AUTH_READ_ONLY_USERNAME=readonly
+PACT_BROKER_BASIC_AUTH_READ_ONLY_PASSWORD=readonly
+```
 
 _NOTE: Please do not commit your `.env` file to source control. If you do, consider your credentials comprimised and update them straight away_
 
@@ -87,71 +87,71 @@ There is a lot going on in the nginx configuration. I will touch on why each com
 
 In this section, we are going to add headers to every request, to avoid cross-site scripting attacks
 
-\[code lang=bash\]
-add\_header X-XSS-Protection "1; mode=block";
-add\_header X-Frame-Options DENY;
-add\_header X-Content-Type-Options nosniff;
-\[/code\]
+```bash
+add_header X-XSS-Protection "1; mode=block";
+add_header X-Frame-Options DENY;
+add_header X-Content-Type-Options nosniff;
+```
 
 Remove the nginx version number from responses to avoid leaking implementation details.
 
-\[code lang=bash\]
-server\_tokens off;
-\[/code\]
+```bash
+server_tokens off;
+```
 
 In the first server block which is for HTTP requests, we do the following
 
 - Listen to all requests on port 80. Our server name, in the name of the pact broker docker image as defined in the `docker-compose.yml`
 
-\[code lang=bash\]
-listen 80 default\_server;
-server\_name broker;
-\[/code\]
+```bash
+listen 80 default_server;
+server_name broker;
+```
 
 - Only allow GET methods, if accessed via port 80. Add in any request methods you wish to allow. I prefer to whitelist, rather than blacklist.
 
-\[code lang=bash\]
+```bash
 if ( $request\_method !~ ^(GET|HEAD)$ ) {
 return 405;
 }
-\[/code\]
+```
 
 Redirect all HTTP requests, to HTTPS. We drop any request parameters that were provided to avoid any parameter injection in our redirect to HTTPS.
 
-\[code lang=bash\]
+```bash
 return 301 https://$host;
-\[/code\]
+```
 
 The second server block is for our HTTPS requests.
 
 - Listen on port 443 and enable ssl
 
-\[code lang=bash\]
+```bash
 listen 443 ssl;
-server\_name broker;
-\[/code\]
+server_name broker;
+```
 
 - Our certificates are loaded in to the docker-container via the `docker-compose.yml` volumes section, on the following paths.
 
-\[code lang=bash\]
-ssl\_certificate "/etc/nginx/ssl/certs/fullchain.pem";
-ssl\_certificate\_key "/etc/nginx/ssl/certs/privkey.pem";
-ssl\_dhparam "/etc/nginx/ssl/dhparam/dhparams.pem";
-\[/code\]
+```bash
+ssl_certificate "/etc/nginx/ssl/certs/fullchain.pem";
+ssl_certificate_key "/etc/nginx/ssl/certs/privkey.pem";
+ssl_dhparam "/etc/nginx/ssl/dhparam/dhparams.pem";
+```
 
 - Enable SSL protocols. TLSv1 is insecure and shouldn't be used. TLSv1.1 is weak. For compliance reasons, TLSv1 should not be used.
 
-\[code lang=bash\]
-ssl\_protocols TLSv1.2 TLSv1.3;
-\[/code\]
+```bash
+ssl_protocols TLSv1.2 TLSv1.3;
+```
 
 - Only enable known strong SSL ciphers. It is a balancing act between using strong ciphers and compatability. A site scoring 100% on a cipher test, would not be compatible with all devices. The current set gives 95% on SSLLabs security test.
 - Let's also tell nginx to use this list
 
-\[code lang=bash\]
-ssl\_ciphers "EECDH+ECDSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA HIGH !RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS";
-ssl\_prefer\_server\_ciphers on;
-\[/code\]
+```bash
+ssl_ciphers "EECDH+ECDSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA HIGH !RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS";
+ssl_prefer_server_ciphers on;
+```
 
 - ecdh provides a nice default for nginx as not all openSSL implementations do it well
 - session tickets don't provide forward secrecy.
@@ -159,33 +159,33 @@ ssl\_prefer\_server\_ciphers on;
 - Maintain SSL connections for 10 minutes
 - Switch of gzip compression as it can be vunerable. Enable if needed.
 
-\[code lang=bash\]
-ssl\_ecdh\_curve secp384r1;
-ssl\_session\_tickets off;
-ssl\_buffer\_size 4k;
-ssl\_session\_cache shared:SSL:10m;
+```bash
+ssl_ecdh_curve secp384r1;
+ssl_session_tickets off;
+ssl_buffer_size 4k;
+ssl_session_cache shared:SSL:10m;
 gzip off;
-\[/code\]
+```
 
 Add Strict Transport Security headers
 
-\[code lang=bash\]
-add\_header Strict-Transport-Security "max-age=31536000; includeSubdomains";
-\[/code\]
+```bash
+add_header Strict-Transport-Security "max-age=31536000; includeSubdomains";
+```
 
 - I am only enabling the following methods on HTTPS requests.
 
-\[code lang=bash\]
+```bash
 if ( $request\_method !~ ^(POST|PUT|PATCH|GET|HEAD|DELETE)$ ) {
 return 405;
 }
-\[/code\]
+```
 
 - Whilst implementing webhooks, I noted that URL based tokens are visible to users both rw/ro, to the pact-broker, so we are blocking access to the `/webhooks` url. This will also block `/webhooks/**`
 - This shows how you can provide granular control of traffic in nginx, you could allow POST's only with an if statement.
 
-\[code lang=bash\]
-error\_page 418 = @blockAccess;
+```bash
+error_page 418 = @blockAccess;
 
 location /webhooks {
 return 418;
@@ -193,117 +193,124 @@ return 418;
 location @blockAccess {
 deny all;
 }
-\[/code\]
+```
 
 The following block is used to proxy all requests recieved through nginx, to the pact broker.
 
 - `proxy_set_headers` are used to ensure the redirect urls are correct in the HAL browser and additionaly enforce our secure headers.
-- `proxy_hide_headers` will avoid leaking details of our pact\_broker & passenger version.
+- `proxy_hide_headers` will avoid leaking details of our pact_broker & passenger version.
 - `proxy_pass` will send our requests recieved on nginx through to the broker.
 
-\[code lang=bash\]
-location / {
+```bash
+location {
 
 # Setting headers for redirects
-proxy\_set\_header Host $host;
-proxy\_set\_header X-Forwarded-Scheme "https";
-proxy\_set\_header X-Forwarded-Port "443";
-proxy\_set\_header X-Forwarded-Ssl "on";
-proxy\_set\_header X-Real-IP $remote\_addr;
-proxy\_set\_header Strict-Transport-Security "max-age=31536000; includeSubdomains";
-proxy\_set\_header X-XSS-Protection "1; mode=block";
-proxy\_set\_header X-Frame-Options DENY;
-proxy\_set\_header X-Content-Type-Options nosniff;
+
+proxy_set_header Host $host;
+proxy_set_header X-Forwarded-Scheme "https";
+proxy_set_header X-Forwarded-Port "443";
+proxy_set_header X-Forwarded-Ssl "on";
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header Strict-Transport-Security "max-age=31536000; includeSubdomains";
+proxy_set_header X-XSS-Protection "1; mode=block";
+proxy_set_header X-Frame-Options DENY;
+proxy_set_header X-Content-Type-Options nosniff;
 
 # Hide return headers to avoid leaking implementation details
-proxy\_hide\_header X-Powered-By;
-proxy\_hide\_header X-Pact-Broker-Version;
+
+proxy_hide_header X-Powered-By;
+proxy_hide_header X-Pact-Broker-Version;
 
 # Perform the proxy pass to our site
-proxy\_pass http://broker:80;
+
+proxy_pass http://broker:80;
 }
-\[/code\]
+```
 
 ## Get to know your docker-compose file
 
 Each docker container is connected by a specified network
 
-\[code lang=bash\]
+```bash
 networks:
+
 - docker-network
-\[/code\]
+```
 
 Standard postgres configuration.
 
-\[code lang=bash\]
+```bash
 postgres:
 image: postgres
 healthcheck:
 test: psql postgres --command "select 1" -U postgres
 ports:
+
 - "5432:5432"
-environment:
-POSTGRES\_USER: postgres
-POSTGRES\_PASSWORD: password
-POSTGRES\_DB: postgres
-networks:
+  environment:
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: password
+  POSTGRES_DB: postgres
+  networks:
 - docker-network
-\[/code\]
+```
 
 The pact broker configuration with basic auth enabled.
 
 - Variables stored in the `.env` file  
-    are read by `docker-compose` on starting the containers
+   are read by `docker-compose` on starting the containers
 - Read into the `docker-compose` file  
-    with variables prefixed with `$`
+   with variables prefixed with `$`
 - You can add additional supported pact parameters, either directly in here, on in your `env` file.
 
-\[code lang=bash\]
-broker\_app:
-container\_name: 'pact-broker'
+```yml
+broker_app:
+container_name: 'pact-broker'
 image: dius/pact-broker:latest
 links:
+
 - postgres
-environment:
-PACT\_BROKER\_DATABASE\_USERNAME: $PACT\_BROKER\_DATABASE\_USERNAME
-PACT\_BROKER\_DATABASE\_PASSWORD: $PACT\_BROKER\_DATABASE\_PASSWORD
-PACT\_BROKER\_DATABASE\_HOST: $PACT\_BROKER\_DATABASE\_HOST
-PACT\_BROKER\_DATABASE\_NAME: $PACT\_BROKER\_DATABASE\_NAME
-PACT\_BROKER\_BASIC\_AUTH\_USERNAME: $PACT\_BROKER\_BASIC\_AUTH\_USERNAME
-PACT\_BROKER\_BASIC\_AUTH\_PASSWORD: $PACT\_BROKER\_BASIC\_AUTH\_PASSWORD
-PACT\_BROKER\_BASIC\_AUTH\_READ\_ONLY\_USERNAME: $PACT\_BROKER\_BASIC\_AUTH\_READ\_ONLY\_USERNAME
-PACT\_BROKER\_BASIC\_AUTH\_READ\_ONLY\_PASSWORD: $PACT\_BROKER\_BASIC\_AUTH\_READ\_ONLY\_PASSWORD
-PACT\_BROKER\_LOG\_LEVEL: WARN
-networks:
+  environment:
+  PACT_BROKER_DATABASE_USERNAME: $PACT_BROKER_DATABASE_USERNAME
+  PACT_BROKER_DATABASE_PASSWORD: $PACT_BROKER_DATABASE_PASSWORD
+  PACT_BROKER_DATABASE_HOST: $PACT_BROKER_DATABASE_HOST
+  PACT_BROKER_DATABASE_NAME: $PACT_BROKER_DATABASE_NAME
+  PACT_BROKER_BASIC_AUTH_USERNAME: $PACT_BROKER_BASIC_AUTH_USERNAME
+  PACT_BROKER_BASIC_AUTH_PASSWORD: $PACT_BROKER_BASIC_AUTH_PASSWORD
+  PACT_BROKER_BASIC_AUTH_READ_ONLY_USERNAME: $PACT_BROKER_BASIC_AUTH_READ_ONLY_USERNAME
+  PACT_BROKER_BASIC_AUTH_READ_ONLY_PASSWORD: $PACT_BROKER_BASIC_AUTH_READ_ONLY_PASSWORD
+  PACT_BROKER_LOG_LEVEL: WARN
+  networks:
 - docker-network
-\[/code\]
+```
 
 The configuration for nginx.
 
-- We link the pact broker container, called broker\_app, but reference it as `broker` which is used as our `servername` in nginx configuration.
+- We link the pact broker container, called broker_app, but reference it as `broker` which is used as our `servername` in nginx configuration.
 - The first volume link loads in our `nginx.conf` file
 - The next three volumes point at the `out` directory of lets-encrypt.
 - The last volume will load in our example site we used for certification, it will be used for renewing our cerificates, which we will touch on after running our example.
 
-\[code lang=bash\]
+```yml
 nginx:
-container\_name: 'pact-nginx'
+container_name: 'pact-nginx'
 image: nginx:alpine
 links:
-- broker\_app:broker
-volumes:
+
+- broker_app:broker
+  volumes:
 - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
 - ./letsencrypt/out/etc/letsencrypt/live//fullchain.pem:/etc/nginx/ssl/certs/fullchain.pem
 - ./letsencrypt/out/etc/letsencrypt/live//privkey.pem:/etc/nginx/ssl/certs/privkey.pem
 - ./letsencrypt/out/etc/letsencrypt/live//chain.pem:/etc/nginx/ssl/certs/chain.pem
 - ./letsencrypt/dhparam/dhparams.pem:/etc/nginx/ssl/dhparam/dhparams.pem
 - ./letsencrypt/out/renewal:/data/letsencrypt
-ports:
+  ports:
 - "80:80"
 - "8443:443"
-networks:
+  networks:
 - docker-network
-\[/code\]
+```
 
 ## Running our example
 
@@ -324,21 +331,27 @@ We can now run our secure broker
 
 ## Testing your setup
 
-\[code lang=bash\]
+```bash
 curl -v http://localhost
+
 # This will redirect to https
 
 curl -v http://localhost/matrix
+
 # This will redirect to https root, not matrix
 
 curl -v https://localhost/matrix
+
 # This will redirect to https matrix page
+
 # Note we don't provide the flag -k (insecure) as the website is certified
 
 curl -v http://localhost/webhooks
 curl -v https://localhost/webhooks
+
 # This will return a 418 error
-\[/code\]
+
+```
 
 ## Renewing your certificates
 
@@ -358,16 +371,16 @@ You will need to make some minor changes to utilise a non-dockerised Postgres in
 
 Update the following environment variables in your `.env` file
 
-\[code lang=bash\]
-PACT\_BROKER\_DATABASE\_USERNAME=postgres
-PACT\_BROKER\_DATABASE\_PASSWORD=postgres
-PACT\_BROKER\_DATABASE\_HOST=postgres
-PACT\_BROKER\_DATABASE\_NAME=postgres
-\[/code\]
+```bash
+PACT_BROKER_DATABASE_USERNAME=postgres
+PACT_BROKER_DATABASE_PASSWORD=postgres
+PACT_BROKER_DATABASE_HOST=postgres
+PACT_BROKER_DATABASE_NAME=postgres
+```
 
 and comment out, or remove the following lines from your `docker-compose.yml`
 
-\[code lang=bash\]
+```yml
 # postgres:
 # image: postgres
 # healthcheck:
@@ -375,15 +388,15 @@ and comment out, or remove the following lines from your `docker-compose.yml`
 # ports:
 # - "5432:5432"
 # environment:
-# POSTGRES\_USER: postgres
-# POSTGRES\_PASSWORD: password
-# POSTGRES\_DB: postgres
+# POSTGRES_USER: postgres
+# POSTGRES_PASSWORD: password
+# POSTGRES_DB: postgres
 
-broker\_app:
+broker_app:
 image: dius/pact-broker
 links:
 # - postgres
-\[/code\]
+```
 
 ## General Pact Broker configuration and usage
 

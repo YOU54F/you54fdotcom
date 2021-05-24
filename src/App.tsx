@@ -14,7 +14,7 @@ import { ReplWorkspace } from "./components/Repl";
 import { TerminalContextProvider } from "react-terminal";
 import { Provider } from "react-redux";
 import store from "./operatingSystems/macOS/redux/store";
-import BlogTerminal from "components/newterm";
+import BlogTerminal from "pages/BlogTerminal";
 
 const GlobalStyles = createGlobalStyle`
   body {

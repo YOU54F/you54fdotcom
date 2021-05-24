@@ -3,8 +3,8 @@ title: "This week I have mostly been..."
 date: "2019-02-05"
 ---
 
-Starting this blog to chart some of my adventures in tech.  
-  
+Starting this blog to chart some of my adventures in tech.
+
 Here are some of the things I have covered over the last months, and will be taking the time to write up over the next few weeks :-
 
 - Building an i7-5920k 64gb Custom Mac Pro

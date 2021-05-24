@@ -17,7 +17,7 @@ And we are going to login into the following [page](https://the-internet.herokua
 
 First we need to convert our XLSX file to JSON with [https://github.com/SheetJS/js-xlsx](https://github.com/SheetJS/js-xlsx)
 
-```
+```js
 import { writeFileSync } from "fs";
 import * as XLSX from "xlsx";
 try {
@@ -35,14 +35,14 @@ try {
 
 or CSV file to JSON with [https://www.papaparse.com/](https://www.papaparse.com/)
 
-```
+```js
 import { readFileSync, writeFileSync } from "fs";
 import { parse } from "papaparse";
 try {
   const csvFile = readFileSync("./testData/testData.csv", "utf8");
   const csvResults = parse(csvFile, {
     header: true,
-    complete: csvData => csvData.data
+    complete: (csvData) => csvData.data,
   }).data;
   writeFileSync(
     "./cypress/fixtures/testDataFromCSV.json",
@@ -61,14 +61,14 @@ In our cypress test file, we are going to
 3. Setup a mocha `context` with a dynamically generated title, unique for each data row
 4. A single test is written inside the `it` block using our `data` attributes, this will be executed as 10 separate tests
 
-```
+```js
 import { login } from "../support/pageObjects/login.page";
 const testData = require("../fixtures/testData.json");
 describe("Dynamically Generated Tests", () => {
   testData.forEach((testDataRow: any) => {
     const data = {
       username: testDataRow.username,
-      password: testDataRow.password
+      password: testDataRow.password,
     };
     context(`Generating a test for ${data.username}`, () => {
       it("should fail to login for the specified details", () => {
