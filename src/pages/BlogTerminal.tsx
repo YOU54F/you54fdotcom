@@ -1,10 +1,9 @@
 import React, { Suspense } from "react";
 import { ReactTerminal } from "react-terminal";
 import { createGlobalStyle } from "styled-components";
-import GetBlogPost from "./GetBlogPost";
+import GetBlogPost from "../components/GetBlogPost";
 
 export default function BlogTerminal() {
-  // Welcome Message
   const welcomeMessage = (
     <div className="header">
       <span>
@@ -21,7 +20,6 @@ export default function BlogTerminal() {
     </Suspense>
   );
 
-  // Terminal commands
   const commands = {
     help: (
       <Suspense fallback={<div>Loading...</div>}>
@@ -87,14 +85,23 @@ export default function BlogTerminal() {
             "terminalFiles/blogs/the-new-chromium-based-microsoft-edge-for-mac-has-been-leaked - and-it-works-with-cypress.md"
           );
         case 13:
-          return blogPostRouter("tinkering-with-the-touchbar.md");
+          return blogPostRouter(
+            "terminalFiles/blogs/tinkering-with-the-touchbar.md"
+          );
+        case 14:
+          return blogPostRouter(
+            "terminalFiles/blogs/2021-05-23-grey-box-testing-talks-parti.md"
+          );
+        case 15:
+          return blogPostRouter(
+            "terminalFiles/blogs/2020-01-28-spicy-meatballs-frying-a-swedish-ecu.md"
+          );
         default:
           return blogPostRouter("terminalFiles/lib/ls.md");
       }
     },
   };
 
-  // Terminal
   return (
     <>
       <GlobalStyles />

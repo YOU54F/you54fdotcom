@@ -11,60 +11,88 @@ The Jest [example](https://github.com/pact-foundation/pact-js/tree/master/exampl
 
 Inspired by a [post](https://github.com/pact-foundation/pact-js/issues/215#issuecomment-437237669) by Tim Jones, one of the maintainers of [Pact-JS](https://github.com/pact-foundation/pact-js) and a member of the [Dius](https://www.dius.com.au) team who built PACT, I decided to build and release an adapter for Jest, which would abstract the pact setup away from the developer, leaving them to concentrate on the tests.
 
+# Jest-Pact
+
+[![npm version](https://badge.fury.io/js/jest-pact.svg)](https://badge.fury.io/js/jest-pact)
+![npm](https://img.shields.io/npm/dm/jest-pact.svg)
+[![TravisCI](https://travis-ci.org/pact-foundation/jest-pact.svg?branch=master)](https://travis-ci.org/pact-foundation/jest-pact)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4ad6c94892c6704253ca/maintainability)](https://codeclimate.com/github/pact-foundation/jest-pact/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/pact-foundation/jest-pact/badge.svg)](https://coveralls.io/github/pact-foundation/jest-pact)
+[![Dependency Status](https://img.shields.io/david/pact-foundation/jest-pact.svg?style=flat-square)](https://david-dm.org/pact-foundation/jest-pact)
+[![devDependency Status](https://img.shields.io/david/dev/pact-foundation/jest-pact.svg?style=flat-square)](https://david-dm.org/pact-foundation/jest-pact#info=devDependencies)
+
+## Jest Adaptor to help write Pact files with ease
+
 ### Features
 
--  instantiates the PactOptions for you
--  Setups Pact mock service before and after hooks so you don’t have to
--  Assign random ports and pass port back to user so we can run in parallel without port clashes
+- [x] instantiates the PactOptions for you
+- [x] Setups Pact mock service before and after hooks so you don’t have to
+- [x] Set Jest timeout to 30 seconds preventing brittle tests in slow environments like Docker
+- [x] Sensible defaults for the pact options that make sense with Jest
+- [x] Supports both the main release of pact-js (9.x.x) and the beta 10.x.x for Pact spec V3
+
+## `Jest-Pact` Roadmap
+
+- [ ] Ensure that jest-pact plays well with jest's default of watch-mode
+- [ ] Ensure that pact failures print nice diffs (at the moment you have to go digging in the log files)
+- [ ] Add a setup hook for clearing out log and pact files
 
 ## Adapter Installation
 
-npm i jest-pact --save-dev
-
-OR
-
+```bash
+# For pact @ 9.x
+npm install --save-dev jest-pact
 yarn add jest-pact --dev
 
-## [](https://github.com/YOU54F/jest-pact#usage)Usage
+# For pact @ 10.0.0-beta.x
+npm install --save-dev jest-pact@beta
+yarn add jest-pact@beta --dev
+```
 
-pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
-    _// regular pact tests go here_
-}
+If you have more than one file with pact tests for the same consumer/provider
+pair, you will also need to add `--runInBand` to your `jest` or `react-scripts test` command in your package.json. This avoids race conditions with the mock
+server writing to the pact file.
 
-## [](https://github.com/YOU54F/jest-pact#example)Example
+## Usage
 
 Say that your API layer looks something like this:
 
-import axios from 'axios';
+```js
+import axios from "axios";
 
-const defaultBaseUrl = "http://your-api.example.com"
+const defaultBaseUrl = "http://your-api.example.com";
 
 export const api = (baseUrl = defaultBaseUrl) => ({
-     getHealth: () => axios.get(\`${baseUrl}/health\`)
-                    .then(response => response.data.status)
-    _/\* other endpoints here \*/_
-})
+  getHealth: () =>
+    axios.get(`${baseUrl}/health`).then((response) => response.data.status),
+  /* other endpoints here */
+});
+```
 
 Then your test might look like:
 
+```js
 import { pactWith } from 'jest-pact';
 import { Matchers } from '@pact-foundation/pact';
 import api from 'yourCode';
 
 pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
   let client;
-  
+
   beforeEach(() => {
     client = api(provider.mockService.baseUrl)
   });
 
   describe('health endpoint', () => {
-    _// Here we set up the interaction that the Pact_
-    _// mock provider will expect._
-    _//_
-    _// jest-pact takes care of validating and tearing_ 
-    _// down the provider for you._ 
-    beforeEach(() =>
+    // Here we set up the interaction that the Pact
+    // mock provider will expect.
+    //
+    // jest-pact takes care of validating and tearing
+    // down the provider for you.
+    beforeEach(() => // note the implicit return.
+                     // addInteraction returns a promise.
+                     // If you don't want to implict return,
+                     // you will need to `await` the result
       provider.addInteraction({
         state: "Server is healthy",
         uponReceiving: 'A request for API health',
@@ -80,43 +108,53 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
         },
       })
     );
-    
-    _// You also test that the API returns the correct_ 
-    _// response to the data layer._ 
-    _//_
-    _// Although Pact will ensure that the provider_
-    _// returned the expected object, you need to test that_
-    _// your code recieves the right object._
-    _//_
-    _// This is often the same as the object that was_ 
-    _// in the network response, but (as illustrated_ 
-    _// here) not always._
-    it('returns server health', () =>
+
+    // You also test that the API returns the correct
+    // response to the data layer.
+    //
+    // Although Pact will ensure that the provider
+    // returned the expected object, you need to test that
+    // your code recieves the right object.
+    //
+    // This is often the same as the object that was
+    // in the network response, but (as illustrated
+    // here) not always.
+    it('returns server health', () => // implicit return again
       client.health().then(health => {
         expect(health).toEqual('up');
       }));
   });
+```
+
+## V3 Pact spec with 10.0.0-beta.x
+
+See [the usage instructions here](https://github.com/pact-foundation/jest-pact/blob/pact-js-v3/README.md)
+
+# Best practices
 
 You can make your tests easier to read by extracting your request and responses:
 
-_/\* pact.fixtures.js \*/_
-import { Matchers } from '@pact-foundation/pact';
+```js
+/* pact.fixtures.js */
+import { Matchers } from "@pact-foundation/pact";
 
 export const healthRequest = {
-  uponReceiving: 'A request for API health',
+  uponReceiving: "A request for API health",
   withRequest: {
-    method: 'GET',
-    path: '/health',
+    method: "GET",
+    path: "/health",
   },
 };
 
 export const healthyResponse = {
   status: 200,
   body: {
-    status: Matchers.like('up'),
+    status: Matchers.like("up"),
   },
-} 
+};
+```
 
+```js
 import { pactWith } from 'jest-pact';
 import { healthRequest, healthyResponse } from "./pact.fixtures";
 
@@ -124,7 +162,7 @@ import api from 'yourCode';
 
 pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
   let client;
-  
+
   beforeEach(() => {
     client = api(provider.mockService.baseUrl)
   });
@@ -138,70 +176,126 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
         willRespondWith: healthyResponse
       })
     );
-    
+
     it('returns server health', () =>
       client.health().then(health => {
         expect(health).toEqual('up');
       }));
   });
+```
 
-## [](https://github.com/YOU54F/jest-pact#configuration)Configuration
+## Common gotchas
 
-pactWith(PactOptions, provider => {
-    _// regular pact tests go here_
+- Forgetting to wait for the promise from `addInteraction` in `beforeEach`.
+  You can return the promise, or use `async`/`await`. If you forget this,
+  your interaction may not be set up before the test runs.
+- Forgetting to wait for the promise of your API call in `it`. You can
+  return the promise, or use `async`/`await`. If you forget this, your
+  test may pass before the `expect` assertion runs, causing a potentially
+  false success.
+- Not running jest with `--runInBand`. If you have multiple test files that
+  write to the same contract, you will need this to avoid intermittent failures
+  when writing the contract file.
+- It's a good idea to specify a different log file for each invocation of `pactWith`,
+  otherwise the logs will get overwritten when other specs start. If you provide an
+  explicit port, then the default mockserver log filename includes the port number.
+
+# API Documentation
+
+Jest-Pact has two primary functions:
+
+- `pactWith(JestPactOptions, (providerMock) => { /* tests go here */ })`: a wrapper that sets up a pact mock provider, applies sensible default options, and applies the setup and verification hooks so you don't have to
+- `messagePactWith(JestMessageConsumerOptions, (messagePact) => { /* tests go here */ })`: a wrapper that sets up a message pact instance and applies sensible default options
+
+Additionally, `pactWith.only / fpactWith`, `pactWith.skip / xpactWith`, `messagePactWith.only / fmessagePactWith` and `messagePactWith.skip / xmessagePactWith` behave as you would expect from Jest.
+
+There are two types exported:
+
+- `JestProvidedPactFn`: This is the type of the second argument to `pactWith`, ie: `(provider: Pact) => void`
+- `JestPactOptions`: An extended version of `PactOptions` that has some additional convienience options (see below).
+
+## Configuration
+
+You can use all the usual `PactOptions` from pact-js, plus a timeout for
+telling jest to wait a bit longer for pact to start and run.
+
+```typescript
+pactWith(JestPactOptions, (provider) => {
+  // regular http pact tests go here
+});
+messagePactWith(JestMessageConsumerOptions, (messagePact) => {
+  // regular message pact tests go here
+});
+
+interface ExtraOptions {
+  timeout?: number; // Timeout for pact service start/teardown, expressed in milliseconds
+  // Default is 30000 milliseconds (30 seconds).
+  logDir?: string; // path for the log file
+  logFileName?: string; // filename for the log file
 }
 
-interface PactOptions {
-  provider: string;
-  consumer: string;
-  port?: number; _// defaults to a random port if not provided_
-  pactfileWriteMode?: PactFileWriteMode;
-  dir? string _// defaults to pact/pacts if not provided_
-}
+type JestPactOptions = PactOptions & ExtraOptions;
 
-type LogLevel = "trace" | "debug" | "info" | "warn" | "error" | "fatal";
-type PactFileWriteMode = "overwrite" | "update" | "merge";
+type JestMessageConsumerOptions = MessageConsumerOptions & ExtraOptions;
+```
 
-## [](https://github.com/YOU54F/jest-pact#defaults)Defaults
+### Defaults
 
-- Log files are written to /pact/logs
-- Pact files are written to /pact/pacts
+Jest-Pact sets some helpful default PactOptions for you. You can override any of these by explicitly setting corresponding option. Here are the defaults:
 
-### [](https://github.com/YOU54F/jest-pact#jest-watch-mode)Jest Watch Mode
+- `log` is set so that log files are written to `/pact/logs`, and named `<consumer>-<provider>-mockserver-interaction.log`. If you provided an explicit `port`, then the log file name is `<consumer>-<provider>-mockserver-interaction-port-<portNumber>.log`
+- `dir` is set so that pact files are written to `/pact/pacts`
+- `logLevel` is set to warn
+- `timeout` is 30,000 milliseconds (30 seconds)
+- `pactfileWriteMode` is set to "update"
+
+Most of the time you won't need to change these.
+
+A common use case for `log` is to change only the filename or the path for
+logging. To help with this, Jest-Pact provides convienience options `logDir`
+and `logFileName`. These allow you to set the path or the filename
+independently. In case you're wondering, if you specify `log`, `logDir` and
+`logFileName`, the convienience options are ignored and `log` takes
+precidence.
+
+### Jest Watch Mode
 
 By default Jest will watch all your files for changes, which means it will run in an infinite loop as your pact tests will generate json pact files and log files.
 
-You can get round this by using the following `watchPathIgnorePatterns: ["pact/logs/*","pact/pacts/*"]` in your `jest.config.js`
+You can get around this by using the following `watchPathIgnorePatterns: ["pact/logs/*","pact/pacts/*"]` in your `jest.config.js`
 
 Example
 
+```js
 module.exports = {
-  testMatch: \["\*\*/\*.test.(ts|js)", "\*\*/\*.it.(ts|js)", "\*\*/\*.pacttest.(ts|js)"\],
-  watchPathIgnorePatterns: \["pact/logs/\*", "pact/pacts/\*"\]
+  testMatch: ["**/*.test.(ts|js)", "**/*.it.(ts|js)", "**/*.pacttest.(ts|js)"],
+  watchPathIgnorePatterns: ["pact/logs/*", "pact/pacts/*"],
 };
+```
 
-You can now run your tests with `jest --watch` and when you change a pact file, or your source code, your pact tests will run
+You can now run your tests with `jest --watch` and when you change a pact file, or your source code, your pact tests will run
 
-### [](https://github.com/YOU54F/jest-pact#examples-of-usage-of-jest-pact)Examples of usage of `jest-pact`
+### Examples of usage of `jest-pact`
 
-See [Jest-Pact-Typescript](https://github.com/YOU54F/jest-pact-typescript) which showcases a full consumer workflow written in Typescript with Jest, using this adaptor
+See [Jest-Pact-Typescript](https://github.com/YOU54F/jest-pact-typescript) which showcases a full consumer workflow written in Typescript with Jest, using this adaptor
 
--  Example pact tests
-    -  AWS v4 Signed API Gateway Provider
-    -  Soap API provider
-    -  File upload API provider
-    -  JSON API provider
+- [x] Example pact tests
+  - [x] AWS v4 Signed API Gateway Provider
+  - [x] Soap API provider
+  - [x] File upload API provider
+  - [x] JSON API provider
 
-#### [](https://github.com/YOU54F/jest-pact#examples-installation)Examples Installation
+#### Examples Installation
 
-- clone repository `git@github.com:YOU54F/jest-pact-typescript.git`
-- Run `yarn install`
-- Run `yarn run pact-test`
+- clone repository `git@github.com:YOU54F/jest-pact-typescript.git`
+- Run `yarn install`
+- Run `yarn run pact-test`
 
-Generated pacts will be output in `pact/pacts` Log files will be output in `pact/logs`
+Generated pacts will be output in `pact/pacts`
+Log files will be output in `pact/logs`
 
-## [](https://github.com/YOU54F/jest-pact#credits)Credits
+## Credits
 
 - [Pact Foundation](https://github.com/pact-foundation)
 - [Pact JS](https://github.com/pact-foundation/pact-js)
-- [Initial Proposal](https://github.com/pact-foundation/pact-js/issues/215#issuecomment-437237669) by [TimothyJones](https://github.com/TimothyJones)
+- [Initial Proposal](https://github.com/pact-foundation/pact-js/issues/215#issuecomment-437237669) by [TimothyJones](https://github.com/TimothyJones)

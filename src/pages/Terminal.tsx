@@ -97,9 +97,9 @@ const bootloader = () => (
   <span>
     {bootItem("macOS", "macos")}
     {bootItem("Ubuntu", "ubuntu")}
-    {bootItem("Repl Workspace", "replworkspace")}
-    {bootItem("Embedded Repl", "replembedded")}
-    {bootItem("Blog 🚧 - In progress", "blog")}
+    {bootItem("Blog", "blog")}
+    {bootItem("Repl Workspace 🚧 - Under construction", "replworkspace")}
+    {bootItem("Embedded Repl 🚧 - Under construction", "replembedded")}
   </span>
 );
 

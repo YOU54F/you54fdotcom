@@ -7,7 +7,6 @@ module.exports = {
   webpack: {
     configure: {
       devtool: "eval-source-map",
-      // entry: ["@babel/polyfill", "./src/index.tsx"],
       module: {
         rules: [
           {

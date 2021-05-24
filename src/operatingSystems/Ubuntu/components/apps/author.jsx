@@ -459,9 +459,9 @@ function Skills() {
 function Projects() {
   const project_list = [
     {
-      name: "This website!",
+      name: "Source code",
       date: "Mar 2021",
-      link: "htt/YOU54F/you54fdotcom",
+      link: appContent.githubRepoUrl,
       description: ["You can easily extend this list to add new projects!"],
       domains: [
         "javascript",

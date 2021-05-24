@@ -11,3 +11,5 @@
 - **blog 11** the-new-chromium-based-microsoft-edge-for-mac-has-been-leaked - and-it-works-with-cypress-and-now-you-can-test-it-too.md
 - **blog 12** the-new-chromium-based-microsoft-edge-for-mac-has-been-leaked - and-it-works-with-cypress.md
 - **blog 13** tinkering-with-the-touchbar.md
+- **blog 14** 2021-05-23-grey-box-testing-talks-parti.md
+- **blog 15** 2020-01-28-spicy-meatballs-frying-a-swedish-ecu.md
