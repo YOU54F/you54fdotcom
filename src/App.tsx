@@ -15,6 +15,7 @@ import { TerminalContextProvider } from "react-terminal";
 import { Provider } from "react-redux";
 import store from "./operatingSystems/macOS/redux/store";
 import BlogTerminal from "pages/BlogTerminal";
+import { Termy } from "pages/Termy";
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -59,6 +60,7 @@ const App: React.FC = () => {
         />
         <Route path="/replworkspace" component={ReplWorkspace} exact />
         <Route path="/ReplEmbedded" component={ReplEmbedded} exact />
+        <Route path="/termy" component={Termy} exact />
         <Route
           path="/MacOS"
           component={() => (
