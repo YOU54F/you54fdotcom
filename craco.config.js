@@ -10,8 +10,8 @@ module.exports = {
       module: {
         rules: [
           {
-            test: /\.md$/,
-            use: "src/components/terminalFiles/blogs",
+            test: /fs/,
+            use: "null-loader",
           },
         ],
       },

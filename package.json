@@ -67,6 +67,7 @@
     "framer-motion": "^4.1.16",
     "jquery": "^3.6.0",
     "nightwind": "^1.1.11",
+    "perf_hooks": "^0.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-draggable": "^4.4.3",

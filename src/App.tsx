@@ -16,6 +16,7 @@ import { Provider } from "react-redux";
 import store from "./operatingSystems/macOS/redux/store";
 import BlogTerminal from "pages/BlogTerminal";
 import { Termy } from "pages/Termy";
+import { V86Component } from "pages/v86/V86";
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -71,6 +72,7 @@ const App: React.FC = () => {
           exact
         />
         <Route path="/Ubuntu" component={UbuntuApp} exact />
+        <Route path="/v86" component={V86Component} exact />
         <Route component={NotFound} />
       </Switch>
 

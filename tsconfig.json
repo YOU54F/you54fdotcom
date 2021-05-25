@@ -23,5 +23,5 @@
     "noEmit": true
   },
   "include": ["src/**/*", ".github/workflows/types"],
-  "exclude": ["node_modules", "build", "public"]
+  "exclude": ["node_modules", "build", "public", "v86-master"]
 }
