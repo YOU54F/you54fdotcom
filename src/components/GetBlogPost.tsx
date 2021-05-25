@@ -18,7 +18,6 @@ const Highlighter = (dark?: boolean) => {
       ...props
     }: SyntaxHighlighterProps) {
       const match = /language-(\w+)/.exec(className || "");
-      console.log(children);
       return !inline && match ? (
         <SyntaxHighlighter
           style={dark ? dracula : prism}

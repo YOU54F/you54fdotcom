@@ -1,5 +1,5 @@
 import config from "../../../config";
-import { aboutMe } from "../../../pages/Terminal";
+import { aboutMe } from "../../../pages/terminalContent";
 const terminal = [
   {
     id: "about",

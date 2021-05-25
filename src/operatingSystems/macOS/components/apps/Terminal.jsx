@@ -17,7 +17,7 @@ const getEmoji = () => {
 const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 // rain animation is adopted from: https://codepen.io/P3R0/pen/MwgoKv
-class HowDare extends Component {
+export class HowDare extends Component {
   constructor(props) {
     super(props);
     this.font_size = 12;
