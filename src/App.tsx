@@ -24,7 +24,7 @@ const GlobalStyles = createGlobalStyle`
     height: 100%;
     max-height: auto;
     overflow-y: scroll;
-    background: #333;
+    // background: #333;
     width: 100%;
     max-width: auto;
     display: block;

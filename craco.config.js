@@ -8,12 +8,7 @@ module.exports = {
     configure: {
       devtool: "eval-source-map",
       module: {
-        rules: [
-          {
-            test: /fs/,
-            use: "null-loader",
-          },
-        ],
+        rules: [],
       },
     },
   },
