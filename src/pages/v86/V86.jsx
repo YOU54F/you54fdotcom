@@ -1,23 +1,24 @@
 import react, { useEffect, useState } from "react";
-import V86 from "../../v86/libv86";
+import { TS86Starter } from "../../ts-86/TS86Starter";
 // import V86 from "./libv86";
 // import V86 from "v86";
 
 export const V86Component = () => {
   const [emulator, setV86instance] = useState("");
   useEffect(() => {
-    const v86Starter = new V86.V86Starter({
-      screen_container: document.getElementById("screen_container"),
-      bios: {
-        url: "../bios/seabios.bin",
-      },
-      vga_bios: {
-        url: "../bios/vgabios.bin",
-      },
-      cdrom: {
-        url: "../images/linux.iso",
-      },
-      autostart: true,
+    const v86Starter = new TS86Starter({
+      screenContainer: document.getElementById("screen_container"),
+
+      // bios: {
+      //   url: "../bios/seabios.bin",
+      // },
+      // vga_bios: {
+      //   url: "../bios/vgabios.bin",
+      // },
+      // cdrom: {
+      //   url: "../images/linux.iso",
+      // },
+      // autostart: true,
     });
     console.log("got a v86 starter");
     console.log(v86Starter);

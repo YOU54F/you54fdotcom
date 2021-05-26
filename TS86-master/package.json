@@ -1,0 +1,6 @@
+{
+    "name": "ts86",
+    "dependencies": {
+        "typescript": "^3.0.1"
+    }
+}
