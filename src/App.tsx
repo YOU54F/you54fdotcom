@@ -15,6 +15,8 @@ import { TerminalContextProvider } from "react-terminal";
 import { Provider } from "react-redux";
 import store from "./operatingSystems/macOS/redux/store";
 import BlogTerminal from "pages/BlogTerminal";
+import { TrelloBoard } from "components/TrelloBoard";
+import { TrelloCardComponent } from "components/TrelloCard";
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -69,6 +71,8 @@ const App: React.FC = () => {
           exact
         />
         <Route path="/Ubuntu" component={UbuntuApp} exact />
+        <Route path="/trelloboard" component={TrelloBoard} exact />
+        <Route path="/trellocard" component={TrelloCardComponent} exact />
         <Route component={NotFound} />
       </Switch>
 
