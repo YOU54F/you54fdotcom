@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { ReactTerminal } from "react-terminal";
 import { createGlobalStyle } from "styled-components";
 import GetBlogPost from "../components/GetBlogPost";
-import { blogPost } from "./terminalContent";
+import { blogPost } from "../terminalContent";
 
 export default function BlogTerminal() {
   const welcomeMessage = (

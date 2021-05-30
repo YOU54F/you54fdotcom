@@ -10,7 +10,7 @@ import {
   bootloader,
   welcomeMessage,
   safHelp,
-} from "./terminalContent";
+} from "../terminalContent";
 
 const { experienceDuration } = appContent;
 const StyledTerm = styled.div`

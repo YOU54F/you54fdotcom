@@ -6,7 +6,7 @@ import { NotFound } from "./pages/Error";
 import { Footer } from "components/Footer";
 import { createGlobalStyle } from "styled-components";
 
-import Terminal from "pages/Terminal";
+import HomeTerminal from "pages/HomeTerminal";
 import UbuntuApp from "./operatingSystems/Ubuntu/App";
 import MacOSApp from "./operatingSystems/macOS";
 import { ReplEmbedded } from "./components/ReplIt";
@@ -44,7 +44,7 @@ const App: React.FC = () => {
           path="/"
           component={() => (
             <TerminalContextProvider>
-              <Terminal />
+              <HomeTerminal />s
             </TerminalContextProvider>
           )}
           exact

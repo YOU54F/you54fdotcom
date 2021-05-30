@@ -11,7 +11,7 @@ import {
 
 import githubImg from "./github.png";
 import styled from "styled-components";
-import { blogPost, welcomeMessage } from "./terminalContent";
+import { blogPost, welcomeMessage } from "../terminalContent";
 // import { HowDare } from "../operatingSystems/macOS/components/apps/Terminal.jsx";
 const { getInternalPath, stripFileExtension } = utilities;
 interface BlogPostProps {

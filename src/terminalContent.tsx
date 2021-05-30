@@ -1,6 +1,6 @@
 import GetBlogPost from "components/GetBlogPost";
 import React, { Suspense } from "react";
-import appContent from "../config";
+import appContent from "./config";
 
 const { experienceDuration, blogUrl } = appContent;
 
@@ -24,6 +24,7 @@ const bootloader = () => (
     {bootItem("macOS", "macos")}
     {bootItem("Ubuntu", "ubuntu")}
     {bootItem("Blog", "blog")}
+    {bootItem("Termy", "termy")}
     {bootItem("Repl Workspace 🚧 - Under construction", "replworkspace")}
     {bootItem("Embedded Repl 🚧 - Under construction", "replembedded")}
   </span>
