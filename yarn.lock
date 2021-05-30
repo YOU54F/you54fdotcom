@@ -3733,7 +3733,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.3, classnames@^2.2.5:
+classnames@^2.1.2, classnames@^2.2.3, classnames@^2.2.5:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
   integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
@@ -10752,6 +10752,14 @@ react-is@^17.0.0, react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
+react-life-timeline@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/react-life-timeline/-/react-life-timeline-1.0.11.tgz#c5f4bd0956fa3c3f2bd7c771dac8338974e22575"
+  integrity sha1-xfS9CVb6PD8r18dx2sgziXTiJXU=
+  dependencies:
+    classnames "^2.1.2"
+    react-tooltip "^3.2.2"
+
 react-markdown@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/react-markdown/-/react-markdown-6.0.2.tgz#d89be45c278b1e5f0196f851fffb11e30c69f027"
@@ -10923,6 +10931,13 @@ react-terminal@^1.1.0:
   dependencies:
     prop-types "^15.7.2"
     react-device-detect "^1.11.14"
+
+react-tooltip@^3.2.2:
+  version "3.11.6"
+  resolved "https://registry.yarnpkg.com/react-tooltip/-/react-tooltip-3.11.6.tgz#4f9735a2a4aa50580af351ce23e74a56f41afc0c"
+  integrity sha512-nTc1yHHaPCHHURvMpf/VNF17pIZiU4zwUGFJBUVr1fZkezFC7E0VPMMVrCfDjt+IpwTHICyzlyx+1FiQ7lw5LQ==
+  dependencies:
+    prop-types "^15.6.0"
 
 react-webcam@5.2.3:
   version "5.2.3"

@@ -20,7 +20,8 @@ import { Termy } from "pages/Termy";
 import { V86Container } from "./pages/v86/V86Container";
 // import V86ScriptProvider from "pages/V86Provider";
 import { XTerminal } from "pages/Xterm_Orig";
-import { BrowserShell } from "pages/browser_shell";
+// import { BrowserShell } from "pages/browser_shell";
+import Experience from "components/Timeline";
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -95,7 +96,8 @@ const App: React.FC = () => {
           )}
           exact
         /> */}
-        <Route component={BrowserShell} path="/shell" />
+        {/* <Route component={BrowserShell} path="/shell" /> */}
+        <Route component={Experience} path="/experience" />
         <Route component={NotFound} />
       </Switch>
 
