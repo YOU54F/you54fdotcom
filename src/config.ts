@@ -48,8 +48,3 @@ interface GeneralAppContent {
 }
 
 export default appContent;
-
-// import appContent from "../../../../config.ts";
-// // src={appContent.vsCodeStartUrl}
-// import appContent from "../config";
-// const { experienceDuration, blogUrl } = appContent;
