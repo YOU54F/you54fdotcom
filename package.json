@@ -2,6 +2,7 @@
   "name": "you54fdotcom",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://you54f.github.io",
   "scripts": {
     "dev": "craco start",
     "build": "craco build",
