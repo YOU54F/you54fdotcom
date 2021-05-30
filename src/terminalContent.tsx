@@ -4,14 +4,14 @@ import appContent from "./config";
 
 const { experienceDuration, blogUrl } = appContent;
 
-const bootItem = (name: string, link: string) => (
+const bootItem = (name: string, link: string, external?: "external") => (
   <span>
     -&gt;{" "}
     <a
       target="_self"
       aria-label={name}
       rel="noopener noreferrer"
-      href={`/${link}`}
+      href={external ? `${link}` : `/${link}`}
     >
       {name}
     </a>
@@ -23,7 +23,8 @@ const bootloader = () => (
   <span>
     {bootItem("macOS", "macos")}
     {bootItem("Ubuntu", "ubuntu")}
-    {bootItem("Blog", "blog")}
+    {bootItem("Blog - terminal", "blog")}
+    {bootItem("Blog - non terminal", "https://blog.you54f.com", "external")}
     {bootItem("Termy", "termy")}
     {bootItem("Repl Workspace 🚧 - Under construction", "replworkspace")}
     {bootItem("Embedded Repl 🚧 - Under construction", "replembedded")}
