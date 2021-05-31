@@ -26,6 +26,8 @@ export const appContent: GeneralAppContent = {
   facebookLink: "https://www.facebook.com/yourfaceisabook",
   githubStarButton:
     "https://ghbtns.com/github-btn.html?user=you54f&repo=you54fdotcom&type=star&count=true&size=large",
+  storybookUrl:
+    "https://www.chromatic.com/library?appId=60b56751c428f6003b9f26dd",
 };
 
 interface GeneralAppContent {
@@ -45,6 +47,7 @@ interface GeneralAppContent {
   authorEmail: string;
   authorEmailLink: string;
   facebookLink: string;
+  storybookUrl: string;
 }
 
 export default appContent;

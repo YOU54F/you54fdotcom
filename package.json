@@ -11,7 +11,10 @@
     "lint:fix": "eslint --fix --ext .js,.tsx,.ts ./src",
     "format": "prettier-eslint --config package.json --write src/**/*.{ts,tsx,js}",
     "build:css": "tailwind build src/ubuntu/styles/styles.css -o src/ubuntu/styles/main.css",
-    "predeploy": "npm run build"
+    "predeploy": "npm run build",
+    "storybook": "start-storybook -p 6006 -s public",
+    "storybook:build": "build-storybook -s public",
+    "storybook:publish": "chromatic --project-token=${CHROMATIC_PROJECT_TOKEN}"
   },
   "husky": {
     "hooks": {
@@ -55,6 +58,16 @@
         }
       ]
     },
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ],
     "ignorePatterns": [
       "node_modules/",
       "build/"
@@ -71,6 +84,7 @@
     "react-dom": "^17.0.2",
     "react-draggable": "^4.4.3",
     "react-ga": "^3.3.0",
+    "react-git-info": "^2.0.0",
     "react-helmet-async": "^1.0.4",
     "react-icons": "^4.2.0",
     "react-markdown": "^6.0.2",
@@ -91,6 +105,12 @@
   },
   "devDependencies": {
     "@craco/craco": "^6.1.2",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/node-logger": "^6.2.9",
+    "@storybook/preset-create-react-app": "^3.1.7",
+    "@storybook/react": "^6.2.9",
     "@teamsupercell/typings-for-css-modules-loader": "^2.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -111,6 +131,7 @@
     "@types/react-syntax-highlighter": "^13.5.0",
     "@types/styled-components": "^4.4.2",
     "autoprefixer": "^9",
+    "chromatic": "^5.8.3",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "husky": "^4.3.8",

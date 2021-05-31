@@ -31,7 +31,6 @@ export const BlogPost: React.FC<BlogPostProps> = ({
 
 export const Termy = () => {
   const terminalContentRef = useRef<Terminal | null>(null);
-  // const [content, setContent] = useState({ rmrf: true });
   const initialFileSystem = {
     home: {
       type: "FOLDER",
@@ -244,7 +243,6 @@ const submitCommand = (
   terminalRef.current.state.inputValue = command;
   // @ts-ignore
   terminalRef.current.handleSubmit({
-    key: "8", // enter
     preventDefault: () => {},
   });
 };

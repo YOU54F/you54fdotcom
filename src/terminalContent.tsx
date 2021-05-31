@@ -1,6 +1,8 @@
 import GetBlogPost from "components/GetBlogPost";
 import React, { Suspense } from "react";
 import appContent from "./config";
+import GitInfo from "react-git-info/macro";
+const gitInfo = GitInfo();
 
 const { experienceDuration, blogUrl } = appContent;
 
@@ -26,6 +28,10 @@ const bootloader = () => (
     {bootItem("Blog - terminal", "blog")}
     {bootItem("Blog - non terminal", "https://blog.you54f.com", "external")}
     {bootItem("Termy", "termy")}
+    {bootItem(
+      "Storybook",
+      appContent.storybookUrl + "&branch=" + gitInfo.branch
+    )}
     {bootItem("Repl Workspace 🚧 - Under construction", "replworkspace")}
     {bootItem("Embedded Repl 🚧 - Under construction", "replembedded")}
   </span>

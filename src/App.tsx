@@ -46,7 +46,7 @@ const App: React.FC = () => {
           path="/"
           component={() => (
             <TerminalContextProvider>
-              <HomeTerminal />s
+              <HomeTerminal />
             </TerminalContextProvider>
           )}
           exact
