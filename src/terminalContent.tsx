@@ -30,7 +30,8 @@ const bootloader = () => (
     {bootItem("Termy", "termy")}
     {bootItem(
       "Storybook",
-      appContent.storybookUrl + "&branch=" + gitInfo.branch
+      appContent.storybookUrl + "&branch=" + gitInfo.branch,
+      "external"
     )}
     {bootItem("Repl Workspace 🚧 - Under construction", "replworkspace")}
     {bootItem("Embedded Repl 🚧 - Under construction", "replembedded")}

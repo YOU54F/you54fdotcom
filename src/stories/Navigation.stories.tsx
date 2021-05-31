@@ -1,16 +1,10 @@
-// YourComponent.stories.tsx
-
-import React, { ComponentProps } from "react";
-
-import { Story } from "@storybook/react";
+import { storiesOf } from "@storybook/react";
+import StoryRouter from "storybook-react-router";
 
 import { Navigation } from "../components/Navigation";
+const Template = storiesOf("Navigation", module)
+  // @ts-ignore
+  .addDecorator(StoryRouter())
+  .add("params", () => <Navigation />);
 
-export default {
-  title: "Navigation",
-  component: Navigation,
-};
-
-const Template: Story<ComponentProps<typeof Navigation>> = () => <Navigation />;
-
-export const NavigationStory = Template.bind({});
+export const NavigationStory = Template;
