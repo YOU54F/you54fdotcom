@@ -12,6 +12,7 @@ export const ReplEmbedded = () => {
       <Title>repl bash shell</Title>
       <DeviceFrame>
         <ResponsiveIframe
+          className="chromatic-ignore"
           id="repl_intro"
           title="repl_intro"
           src="https://replit.com/@you54f/intro?embed=1&output=1"

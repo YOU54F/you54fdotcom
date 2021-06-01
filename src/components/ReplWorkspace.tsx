@@ -12,6 +12,7 @@ export const ReplWorkspace = () => {
       <Title>repl workspace</Title>
       <DeviceFrame>
         <ResponsiveIframe
+          className="chromatic-ignore"
           id="repl_intro2"
           title="repl_intro2"
           src="https://replit.com/@YOU54F/you54f?lite=true#index.ts"
