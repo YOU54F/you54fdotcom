@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dotty": "dotenv -p REACT_APP_GIT_BRANCH",
     "dev": "dotenv craco start",
     "build": "dotenv craco build",
     "test": "dotenv craco test",
