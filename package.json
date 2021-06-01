@@ -121,7 +121,7 @@
     "@storybook/react": "^6.2.9",
     "@teamsupercell/typings-for-css-modules-loader": "^2.0.0",
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
+    "@testing-library/react": "11.2.7",
     "@testing-library/user-event": "^7.1.2",
     "@types/eslint": "^6.1.1",
     "@types/jest": "^24.0.0",
