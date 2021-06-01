@@ -62,7 +62,7 @@ body:not(pre) {
   filter: invert();
 }
 
-
+/* --------- input --------- */
 
 .login input::placeholder {
   color: white;
@@ -77,6 +77,7 @@ body:not(pre) {
   color: white;
 }
 
+/* --------- spotlight --------- */
 
 .spotlight {
   width: 660px;
@@ -92,6 +93,7 @@ body:not(pre) {
   }
 }
 
+/* --------- app window --------- */
 
 .innner-window {
   height: calc(100% - 1.5rem);
@@ -109,6 +111,7 @@ body:not(pre) {
   display: block;
 }
 
+/* --------- dock --------- */
 
 .dock ul {
   height: 65px;
@@ -148,6 +151,8 @@ body:not(pre) {
 .slider .rangeslider .rangeslider__handle::after {
   display: none;
 }
+
+/* --------- bear markdown --------- */
 
 .bear .markdown a {
   @apply text-red-500;

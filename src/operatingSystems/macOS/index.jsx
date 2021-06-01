@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./styles/index.css";
-import "./styles/index.tailwind.css";
+import "../../styles/tailwind.css";
+import "./macos.css";
 import ReactGA from "react-ga";
 import { Provider } from "react-redux";
 
@@ -67,9 +67,11 @@ function MacOS() {
 }
 
 const MacBigSur = () => (
-  <Provider store={store}>
-    <MacOS />
-  </Provider>
+  <>
+    <Provider store={store}>
+      <MacOS />
+    </Provider>
+  </>
 );
 
 export default MacBigSur;
