@@ -18,6 +18,6 @@ const Template: Story<ComponentProps<typeof GetBlogPost>> = (args) => (
 export const BlogStory = Template.bind({});
 BlogStory.args = {
   filePath:
-    "terminalFiles/blogs/configuring-cypress-to-work-with-iframes-cross-origin-sites.md",
+    "blogs/configuring-cypress-to-work-with-iframes-cross-origin-sites.md",
   darkMode: true,
 };

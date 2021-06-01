@@ -77,7 +77,7 @@ const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: "JetBrains Mono";
     src: local("JetBrains Mono"),
-      url(./fonts/JetBrainsMono-Regular.ttf) format("truetype");
+      url(./terminalFiles/fonts/JetBrainsMono-Regular.ttf) format("truetype");
   }
 
   html,
