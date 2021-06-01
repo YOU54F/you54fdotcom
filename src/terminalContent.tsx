@@ -1,8 +1,6 @@
 import GetBlogPost from "components/GetBlogPost";
 import React, { Suspense } from "react";
 import appContent from "./config";
-import GitInfo from "react-git-info/macro";
-const gitInfo = GitInfo();
 
 const { experienceDuration, blogUrl } = appContent;
 
@@ -30,7 +28,7 @@ const bootloader = () => (
     {bootItem("Termy", "termy")}
     {bootItem(
       "Storybook",
-      appContent.storybookUrl + "&branch=" + gitInfo.branch,
+      appContent.storybookUrl + "&branch=" + process.env.VERCEL_GIT_COMMIT_REF,
       "external"
     )}
     {bootItem("Repl Workspace 🚧 - Under construction", "replworkspace")}
