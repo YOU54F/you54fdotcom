@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 
 import { Story } from "@storybook/react";
 
-import { TrelloCardComponent } from "./TrelloCard";
+import TrelloCardComponent from "./TrelloCard";
 
 export default {
   title: "TrelloCard",

@@ -356,3 +356,5 @@ const StyledTermy = styled.div`
     background-color: #4f5b66;
   }
 `;
+
+export default Termy;

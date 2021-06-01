@@ -6,7 +6,7 @@ import { DeviceFrame } from "./DeviceFrame";
 const Title = styled.h2`
   text-align: center;
 `;
-export const ReplWorkspace = () => {
+const ReplWorkspace = () => {
   return (
     <div>
       <Title>repl workspace</Title>
@@ -21,3 +21,5 @@ export const ReplWorkspace = () => {
     </div>
   );
 };
+
+export default ReplWorkspace;
