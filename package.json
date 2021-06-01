@@ -14,7 +14,7 @@
     "predeploy": "npm run build",
     "storybook": "start-storybook -p 6006 -s public",
     "storybook:build": "build-storybook -s public",
-    "storybook:publish": "chromatic --project-token=${CHROMATIC_PROJECT_TOKEN} --branch-name ${REACT_APP_GIT_BRANCH}"
+    "storybook:publish": "chromatic --project-token=${CHROMATIC_PROJECT_TOKEN} --branch-name ${VERCEL_GIT_COMMIT_REF}"
   },
   "husky": {
     "hooks": {

@@ -47,12 +47,14 @@ const script: DemoScript = {
 
 function CodePreview() {
   return (
-    <AnimatedCodeExample
-      script={script}
-      theme="dark"
-      highlightActiveElement={true}
-      browserDisplayedUrl={"https://localhost:3002"}
-    />
+    <div className="chromatic-ignore">
+      <AnimatedCodeExample
+        script={script}
+        theme="dark"
+        highlightActiveElement={true}
+        browserDisplayedUrl={"https://localhost:3002"}
+      />
+    </div>
   );
 }
 
