@@ -5,7 +5,7 @@
   "scripts": {
     "dotty": "dotenv -p REACT_APP_GIT_BRANCH",
     "dev": "dotenv craco start",
-    "build": "dotenv craco build",
+    "build": "echo $REACT_APP_VERCEL_GIT_COMMIT_REF && echo $VERCEL_GIT_COMMIT_REF && dotenv craco build",
     "test": "dotenv craco test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.tsx ./src",
