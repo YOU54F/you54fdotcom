@@ -6,21 +6,21 @@ export default function Status() {
     <div className="flex justify-center items-center">
       <span className="mx-1.5">
         <img
-          src="./ubuntu/themes/Yaru/status/network-wireless-signal-good-symbolic.svg"
+          src="/ubuntu/themes/Yaru/status/network-wireless-signal-good-symbolic.svg"
           alt="ubuntu wifi"
           className="inline status-symbol"
         />
       </span>
       <span className="mx-1.5">
         <img
-          src="./ubuntu/themes/Yaru/status/audio-volume-medium-symbolic.svg"
+          src="/ubuntu/themes/Yaru/status/audio-volume-medium-symbolic.svg"
           alt="ubuntu sound"
           className="inline status-symbol"
         />
       </span>
       <span className="mx-1.5">
         <img
-          src="./ubuntu/themes/Yaru/status/battery-good-symbolic.svg"
+          src="/ubuntu/themes/Yaru/status/battery-good-symbolic.svg"
           alt="ubuntu battry"
           className="inline status-symbol"
         />

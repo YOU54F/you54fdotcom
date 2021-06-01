@@ -2,14 +2,14 @@ import React from "react";
 
 export default function BackgroundImage(props) {
   const bg_images = {
-    "wall-1": "./ubuntu/images/wallpapers/wall-1.jpg",
-    "wall-2": "./ubuntu/images/wallpapers/wall-2.png",
-    "wall-3": "./ubuntu/images/wallpapers/wall-3.jpg",
-    "wall-4": "./ubuntu/images/wallpapers/wall-4.jpg",
-    "wall-5": "./ubuntu/images/wallpapers/wall-5.jpg",
-    "wall-6": "./ubuntu/images/wallpapers/wall-6.png",
-    "wall-7": "./ubuntu/images/wallpapers/wall-7.png",
-    "wall-8": "./ubuntu/images/wallpapers/wall-8.jpg",
+    "wall-1": "/ubuntu/images/wallpapers/wall-1.jpg",
+    "wall-2": "/ubuntu/images/wallpapers/wall-2.png",
+    "wall-3": "/ubuntu/images/wallpapers/wall-3.jpg",
+    "wall-4": "/ubuntu/images/wallpapers/wall-4.jpg",
+    "wall-5": "/ubuntu/images/wallpapers/wall-5.jpg",
+    "wall-6": "/ubuntu/images/wallpapers/wall-6.png",
+    "wall-7": "/ubuntu/images/wallpapers/wall-7.png",
+    "wall-8": "/ubuntu/images/wallpapers/wall-8.jpg",
   };
   return (
     <div

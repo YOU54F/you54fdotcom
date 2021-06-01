@@ -27,7 +27,7 @@ class Login extends Component {
           {/* Avatar */}
           <img
             className="rounded-full w-24 h-24 my-0 mx-auto"
-            src="./macos/images/logos/saf_pixel_head.png"
+            src="/macos/images/logos/saf_pixel_head.png"
             alt="img"
           />
           <div className="nightwind-prevent font-semibold text-xl mt-2 text-white">

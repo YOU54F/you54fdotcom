@@ -3,14 +3,14 @@ import Clock from "../util components/clock";
 
 export default function LockScreen(props) {
   const wallpapers = {
-    "wall-1": "./ubuntu/images/wallpapers/wall-1.jpg",
-    "wall-2": "./ubuntu/images/wallpapers/minified/wall-2.jpeg",
-    "wall-3": "./ubuntu/images/wallpapers/minified/wall-3.jpg",
-    "wall-4": "./ubuntu/images/wallpapers/minified/wall-4.jpg",
-    "wall-5": "./ubuntu/images/wallpapers/minified/wall-5.jpg",
-    "wall-6": "./ubuntu/images/wallpapers/minified/wall-6.jpeg",
-    "wall-7": "./ubuntu/images/wallpapers/minified/wall-7.jpeg",
-    "wall-8": "./ubuntu/images/wallpapers/minified/wall-8.jpg",
+    "wall-1": "/ubuntu/images/wallpapers/wall-1.jpg",
+    "wall-2": "/ubuntu/images/wallpapers/minified/wall-2.jpeg",
+    "wall-3": "/ubuntu/images/wallpapers/minified/wall-3.jpg",
+    "wall-4": "/ubuntu/images/wallpapers/minified/wall-4.jpg",
+    "wall-5": "/ubuntu/images/wallpapers/minified/wall-5.jpg",
+    "wall-6": "/ubuntu/images/wallpapers/minified/wall-6.jpeg",
+    "wall-7": "/ubuntu/images/wallpapers/minified/wall-7.jpeg",
+    "wall-8": "/ubuntu/images/wallpapers/minified/wall-8.jpg",
   };
 
   if (props.isLocked) {

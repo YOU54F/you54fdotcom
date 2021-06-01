@@ -298,7 +298,7 @@ export function WindowEditButtons(props) {
         onClick={props.minimize}
       >
         <img
-          src="./ubuntu/themes/Yaru/window/window-minimize-symbolic.svg"
+          src="/ubuntu/themes/Yaru/window/window-minimize-symbolic.svg"
           alt="ubuntu window minimize"
           className="inline"
         />
@@ -309,7 +309,7 @@ export function WindowEditButtons(props) {
           onClick={props.maximize}
         >
           <img
-            src="./ubuntu/themes/Yaru/window/window-restore-symbolic.svg"
+            src="/ubuntu/themes/Yaru/window/window-restore-symbolic.svg"
             alt="ubuntu window restore"
             className="inline"
           />
@@ -320,7 +320,7 @@ export function WindowEditButtons(props) {
           onClick={props.maximize}
         >
           <img
-            src="./ubuntu/themes/Yaru/window/window-maximize-symbolic.svg"
+            src="/ubuntu/themes/Yaru/window/window-maximize-symbolic.svg"
             alt="ubuntu window maximize"
             className="inline"
           />
@@ -333,7 +333,7 @@ export function WindowEditButtons(props) {
         onClick={props.close}
       >
         <img
-          src="./ubuntu/themes/Yaru/window/window-close-symbolic.svg"
+          src="/ubuntu/themes/Yaru/window/window-close-symbolic.svg"
           alt="ubuntu window close"
           className="inline"
         />

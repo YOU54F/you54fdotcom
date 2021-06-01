@@ -81,7 +81,7 @@ export class AllApplications extends React.Component {
           >
             <img
               className={"w-5 h-5"}
-              src={"./ubuntu/images/logos/search.png"}
+              src={"/ubuntu/images/logos/search.png"}
               alt={"search"}
             />
             <input

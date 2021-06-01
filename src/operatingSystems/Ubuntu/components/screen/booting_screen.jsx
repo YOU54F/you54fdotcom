@@ -19,7 +19,7 @@ function BootingScreen(props) {
     >
       <img
         className="md:w-1/4 w-1/2"
-        src="./ubuntu/themes/Yaru/status/cof_orange_hex.svg"
+        src="/ubuntu/themes/Yaru/status/cof_orange_hex.svg"
         alt="Ubuntu Logo"
       />
       <div
@@ -30,21 +30,21 @@ function BootingScreen(props) {
           <div className="bg-white rounded-full flex justify-center items-center w-10 h-10 hover:bg-gray-300">
             <img
               className="w-8"
-              src="./ubuntu/themes/Yaru/status/power-button.svg"
+              src="/ubuntu/themes/Yaru/status/power-button.svg"
               alt="Power Button"
             />
           </div>
         ) : (
           <img
             className={" w-10 " + (props.visible ? " animate-spin " : "")}
-            src="./ubuntu/themes/Yaru/status/process-working-symbolic.svg"
+            src="/ubuntu/themes/Yaru/status/process-working-symbolic.svg"
             alt="Ubuntu Process Symbol"
           />
         )}
       </div>
       <img
         className="md:w-1/5 w-1/2"
-        src="./ubuntu/themes/Yaru/status/ubuntu_white_hex.svg"
+        src="/ubuntu/themes/Yaru/status/ubuntu_white_hex.svg"
         alt="Ubuntu Name"
       />
       <div className="text-white mb-4">

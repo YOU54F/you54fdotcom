@@ -18,7 +18,7 @@ import BlogTerminal from "pages/BlogTerminal";
 import { Termy } from "pages/Termy";
 import { TrelloBoard } from "components/TrelloBoard";
 import { TrelloCardComponent } from "components/TrelloCard";
-
+import "./index.tailwind.css";
 const GlobalStyles = createGlobalStyle`
   body {
     margin: auto 0;
