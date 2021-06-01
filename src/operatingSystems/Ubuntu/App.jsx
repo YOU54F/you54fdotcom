@@ -1,6 +1,6 @@
 import Ubuntu from "./components/ubuntu";
 
-import "./styles/main.css";
+// import "./styles/main.css";
 
 function UbuntuApp() {
   return <Ubuntu />;
