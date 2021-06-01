@@ -28,7 +28,8 @@ const bootloader = () => (
     {bootItem("Termy", "termy")}
     {bootItem(
       "Storybook",
-      appContent.storybookUrl + "&branch=" + process.env.VERCEL_GIT_COMMIT_REF,
+      appContent.storybookUrl + "&branch=" + process.env.REACT_APP_GIT_BRANCH ??
+        "main",
       "external"
     )}
     {bootItem("Repl Workspace 🚧 - Under construction", "replworkspace")}

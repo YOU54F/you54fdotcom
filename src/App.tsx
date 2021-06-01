@@ -33,6 +33,9 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const App: React.FC = () => {
+  console.log(process.env.REACT_APP_NAME);
+  console.log(process.env.REACT_APP_GIT_BRANCH);
+  console.log(process.env.REACT_APP_GIT_BRANCH);
   return (
     <>
       <Helmet>
