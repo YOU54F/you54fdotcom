@@ -3,7 +3,7 @@ const launchpadApps = [
   {
     id: config.githubRepoUrl,
     title: config.githubRepoUrl,
-    img: "img/macos/icons/launchpad/flint.png",
+    img: "./macos/img/icons/launchpad/flint.png",
     link: config.githubRepoUrl,
   },
 ];
