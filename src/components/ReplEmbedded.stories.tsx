@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 
 import { Story } from "@storybook/react";
 
-import { ReplEmbedded } from "./ReplEmbedded";
+import ReplEmbedded from "./ReplEmbedded";
 
 export default {
   title: "ReplEmbedded",

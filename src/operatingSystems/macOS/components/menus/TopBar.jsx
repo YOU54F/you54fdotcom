@@ -199,7 +199,7 @@ class TopBar extends Component {
           >
             <img
               className="w-4 h-4 filter-invert"
-              src="img/macos/icons/menu/controlcenter.png"
+              src="/macos/img/icons/menu/controlcenter.png"
               alt="control center"
             />
           </TopBarItem>

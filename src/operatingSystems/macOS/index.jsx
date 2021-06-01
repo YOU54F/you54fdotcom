@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../../styles/tailwind.css";
-import "./macos.css";
+// import "./styles/index.tailwind.css";
+import "./styles/index.css";
 import ReactGA from "react-ga";
 import { Provider } from "react-redux";
 

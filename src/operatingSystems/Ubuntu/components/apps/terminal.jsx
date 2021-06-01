@@ -286,7 +286,7 @@ export class Terminal extends Component {
         });
 
         result =
-          "<img class=' w-2/5' src='./images/memes/used-sudo-command.jpg' />";
+          "<img class=' w-2/5' src='/ubuntu/images/memes/used-sudo-command.jpg' />";
         break;
       default:
         result =

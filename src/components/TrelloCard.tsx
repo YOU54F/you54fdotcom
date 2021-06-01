@@ -27,7 +27,7 @@ const defaultTrelloResult: TrelloResult = {
   ],
 };
 
-export const TrelloCardComponent = () => {
+const TrelloCardComponent = () => {
   const [trelloCards, setTrelloCards] =
     useState<TrelloResult>(defaultTrelloResult);
   useEffect(() => {
@@ -56,3 +56,5 @@ const TrelloCardIframe = styled.iframe`
   width: 250px;
   frame-border: 0;
 `;
+
+export default TrelloCardComponent;

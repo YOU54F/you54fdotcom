@@ -6,7 +6,7 @@ import { DeviceFrame } from "./DeviceFrame";
 const Title = styled.h2`
   text-align: center;
 `;
-export const ReplEmbedded = () => {
+const ReplEmbedded = () => {
   return (
     <div>
       <Title>repl bash shell</Title>
@@ -21,3 +21,5 @@ export const ReplEmbedded = () => {
     </div>
   );
 };
+
+export default ReplEmbedded;

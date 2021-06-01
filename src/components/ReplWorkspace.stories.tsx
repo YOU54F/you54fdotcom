@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 
 import { Story } from "@storybook/react";
 
-import { ReplWorkspace } from "./ReplWorkspace";
+import ReplWorkspace from "./ReplWorkspace";
 
 export default {
   title: "ReplWorkspace",
