@@ -3,18 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "craco start",
-    "build": "craco build",
-    "test": "craco test",
+    "dev": "dotenv craco start",
+    "build": "dotenv craco build",
+    "test": "dotenv craco test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.tsx ./src",
     "lint:fix": "eslint --fix --ext .js,.tsx,.ts ./src",
     "format": "prettier-eslint --config package.json --write src/**/*.{ts,tsx,js}",
     "build:css": "tailwind build src/ubuntu/styles/styles.css -o src/ubuntu/styles/main.css",
     "predeploy": "npm run build",
-    "storybook": "start-storybook -p 6006 -s public",
-    "storybook:build": "build-storybook -s public",
-    "storybook:publish": "chromatic --project-token=${CHROMATIC_PROJECT_TOKEN} --branch-name ${VERCEL_GIT_COMMIT_REF}"
+    "storybook": "dotenv start-storybook -p 6006 -s public",
+    "storybook:build": "dotenv build-storybook -s public",
+    "storybook:publish": "dotenv chromatic --project-token=${CHROMATIC_PROJECT_TOKEN} --branch-name ${VERCEL_GIT_COMMIT_REF}"
   },
   "husky": {
     "hooks": {
@@ -79,6 +79,7 @@
     "@rooks/use-raf": "^4.11.2",
     "clsx": "^1.1.1",
     "date-fns": "2.21.3",
+    "dotenv-cli": "^4.0.0",
     "emailjs-com": "^2.6.4",
     "framer-motion": "^4.1.16",
     "javascript-terminal": "^1.1.1",
