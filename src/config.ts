@@ -8,6 +8,15 @@ const experience = () =>
     365
   ).toFixed(1);
 
+export const gitBranch = process.env.REACT_APP_GIT_BRANCH_CI
+  ? process.env.REACT_APP_GIT_BRANCH_CI
+  : process.env.REACT_APP_GIT_BRANCH_LOCAL
+  ? process.env.REACT_APP_GIT_BRANCH_LOCAL
+  : "main";
+
+const storybookBaseUrl =
+  "https://www.chromatic.com/library?appId=60b56751c428f6003b9f26dd";
+
 export const appContent: GeneralAppContent = {
   githubAuthorUrl: "https://github.com/you54f",
   githubRepoUrl: "https://github.com/you54f/you54fdotcom",
@@ -26,8 +35,7 @@ export const appContent: GeneralAppContent = {
   facebookLink: "https://www.facebook.com/yourfaceisabook",
   githubStarButton:
     "https://ghbtns.com/github-btn.html?user=you54f&repo=you54fdotcom&type=star&count=true&size=large",
-  storybookUrl:
-    "https://www.chromatic.com/library?appId=60b56751c428f6003b9f26dd",
+  storybookBranchUrl: storybookBaseUrl + "&branch=" + gitBranch,
 };
 
 interface GeneralAppContent {
@@ -47,7 +55,7 @@ interface GeneralAppContent {
   authorEmail: string;
   authorEmailLink: string;
   facebookLink: string;
-  storybookUrl: string;
+  storybookBranchUrl: string;
 }
 
 export default appContent;

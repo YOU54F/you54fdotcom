@@ -26,12 +26,7 @@ const bootloader = () => (
     {bootItem("Blog - terminal", "blog")}
     {bootItem("Blog - non terminal", "https://blog.you54f.com", "external")}
     {bootItem("Termy", "termy")}
-    {bootItem(
-      "Storybook",
-      appContent.storybookUrl + "&branch=" + process.env.REACT_APP_GIT_BRANCH ??
-        "main",
-      "external"
-    )}
+    {bootItem("Storybook", appContent.storybookBranchUrl, "external")}
     {bootItem("Repl Workspace 🚧 - Under construction", "replworkspace")}
     {bootItem("Embedded Repl 🚧 - Under construction", "replembedded")}
   </span>
