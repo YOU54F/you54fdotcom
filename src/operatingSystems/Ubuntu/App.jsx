@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import Ubuntu from "./components/ubuntu";
 
-import "../../styles/tailwind.css";
+import "./tailwind.css";
 
 function UbuntuApp() {
   return (
