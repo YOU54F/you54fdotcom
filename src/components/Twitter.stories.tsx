@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 
 import { Story } from "@storybook/react";
 
-import { Twitter } from "../components/Twitter";
+import { Twitter } from "./Twitter";
 
 export default {
   title: "Twitter",

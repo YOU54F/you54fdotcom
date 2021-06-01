@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import "../styles/devices.min.css";
 
 import { ReactTerminal } from "react-terminal";
 import styled from "styled-components";
@@ -11,6 +10,7 @@ import {
   welcomeMessage,
   safHelp,
 } from "../terminalContent";
+import { DeviceStyles } from "styles/deviceStyles";
 
 const { experienceDuration } = appContent;
 const StyledTerm = styled.div`
@@ -36,20 +36,22 @@ export default function Terminal() {
   };
 
   return (
-    <StyledTerm className="console">
-      <link rel="stylesheet" href="devices.min.css" type="text/css" />
-      <DeviceFrame
-        children={
-          <ReactTerminal
-            theme={theme && theme === "dark" ? "dracula" : "light"}
-            welcomeMessage={welcomeMessage}
-            commands={commands}
-            showControlButtons={true}
-            childRef={ref}
-            id="reactTerminal"
-          />
-        }
-      />
-    </StyledTerm>
+    <>
+      <DeviceStyles />
+      <StyledTerm className="console">
+        <DeviceFrame
+          children={
+            <ReactTerminal
+              theme={theme && theme === "dark" ? "dracula" : "light"}
+              welcomeMessage={welcomeMessage}
+              commands={commands}
+              showControlButtons={true}
+              childRef={ref}
+              id="reactTerminal"
+            />
+          }
+        />
+      </StyledTerm>
+    </>
   );
 }

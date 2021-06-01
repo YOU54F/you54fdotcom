@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 
 import { Story } from "@storybook/react";
 
-import { Termy } from "../pages/Termy";
+import { Termy } from "./Termy";
 
 export default {
   title: "Termy",

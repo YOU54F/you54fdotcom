@@ -4,18 +4,18 @@ import React, { ComponentProps } from "react";
 
 import { Story } from "@storybook/react";
 
-import HomeTerminal from "../pages/HomeTerminal";
+import BlogTerminal from "./BlogTerminal";
 import { TerminalContextProvider } from "react-terminal";
 
 export default {
-  title: "HomeTerminal",
-  component: HomeTerminal,
+  title: "BlogTerminal",
+  component: BlogTerminal,
 };
 
-const Template: Story<ComponentProps<typeof HomeTerminal>> = () => (
+const Template: Story<ComponentProps<typeof BlogTerminal>> = () => (
   <TerminalContextProvider>
-    <HomeTerminal />
+    <BlogTerminal />
   </TerminalContextProvider>
 );
 
-export const HomeTerminalStory = Template.bind({});
+export const BlogTerminalStory = Template.bind({});

@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 
 import { Story } from "@storybook/react";
 
-import GetBlogPost from "../components/GetBlogPost";
+import GetBlogPost from "./GetBlogPost";
 
 export default {
   title: "GetBlogPost",

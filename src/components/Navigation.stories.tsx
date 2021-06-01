@@ -1,7 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import StoryRouter from "storybook-react-router";
 
-import { Navigation } from "../components/Navigation";
+import { Navigation } from "./Navigation";
 const Template = storiesOf("Navigation", module)
   // @ts-ignore
   .addDecorator(StoryRouter())

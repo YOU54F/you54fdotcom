@@ -1,13 +1,13 @@
-import { PropsWithRef, useEffect, useState } from "react";
-import "../styles/devices.min.css";
+import React, { PropsWithChildren, useEffect, useState } from "react";
 
 import styled from "styled-components";
+import { DeviceStyles } from "styles/deviceStyles";
 
 const StyledDevice = styled.div`
   display: flex;
 `;
 
-export const DeviceFrame = ({ children }: PropsWithRef<any>) => {
+export const DeviceFrame = ({ children }: PropsWithChildren<{}>) => {
   const [isIpad, setisIpad] = useState(
     window.innerWidth >= 415 && window.innerWidth < 850
   );
@@ -34,7 +34,8 @@ export const DeviceFrame = ({ children }: PropsWithRef<any>) => {
     );
   }, [isMobile]);
   return (
-    <div style={{ overflow: "scroll" }}>
+    <div style={{ overflow: "scroll", textAlign: "center" }}>
+      <DeviceStyles />
       <StyledDevice
         className={`${
           isIpad || isMobile

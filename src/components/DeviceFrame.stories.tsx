@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 
 import { Story } from "@storybook/react";
 
-import { DeviceFrame } from "../components/DeviceFrame";
+import { DeviceFrame } from "./DeviceFrame";
 
 export default {
   title: "DeviceFrame",
