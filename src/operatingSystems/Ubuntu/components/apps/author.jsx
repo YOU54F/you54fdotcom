@@ -68,7 +68,7 @@ export class AboutAuthor extends Component {
           <img
             className=" w-3 md:w-4"
             alt={"about " + appContent.authorName}
-            src="./themes/Yaru/status/about.svg"
+            src="./ubuntu/themes/Yaru/status/about.svg"
           />
           <span className=" ml-1 md:ml-2 text-gray-50 ">About Me</span>
         </div>
@@ -86,7 +86,7 @@ export class AboutAuthor extends Component {
           <img
             className=" w-3 md:w-4"
             alt={"about " + appContent.authorName + "education"}
-            src="./themes/Yaru/status/education.svg"
+            src="./ubuntu/themes/Yaru/status/education.svg"
           />
           <span className=" ml-1 md:ml-2 text-gray-50 ">Education</span>
         </div>
@@ -104,7 +104,7 @@ export class AboutAuthor extends Component {
           <img
             className=" w-3 md:w-4"
             alt={"about " + appContent.authorName + "skill"}
-            src="./themes/Yaru/status/skills.svg"
+            src="./ubuntu/themes/Yaru/status/skills.svg"
           />
           <span className=" ml-1 md:ml-2 text-gray-50 ">Skills</span>
         </div>
@@ -122,7 +122,7 @@ export class AboutAuthor extends Component {
           <img
             className=" w-3 md:w-4"
             alt={"about " + appContent.authorName + "projects"}
-            src="./themes/Yaru/status/projects.svg"
+            src="./ubuntu/themes/Yaru/status/projects.svg"
           />
           <span className=" ml-1 md:ml-2 text-gray-50 ">Projects</span>
         </div>
@@ -140,7 +140,7 @@ export class AboutAuthor extends Component {
           <img
             className=" w-3 md:w-4"
             alt={"about " + appContent.authorName + "cv"}
-            src="./themes/Yaru/status/download.svg"
+            src="./ubuntu/themes/Yaru/status/download.svg"
           />
           <span className=" ml-1 md:ml-2 text-gray-50 ">cv</span>
         </div>
@@ -197,7 +197,7 @@ function About() {
       <div className="w-20 md:w-28 my-4 bg-white rounded-full">
         <img
           className="w-full"
-          src="./images/logos/saf_pixel_head.png"
+          src="./ubuntu/images/logos/saf_pixel_head.png"
           style={{ borderRadius: "50%" }}
           alt={"About" + authorName + "Logo"}
         />
@@ -560,7 +560,7 @@ function Resume() {
   return (
     <iframe
       className="h-full w-full"
-      src="./files/Author-Resume.pdf"
+      src="./ubuntu/files/Author-Resume.pdf"
       title="author resume"
       frameBorder="0"
     ></iframe>

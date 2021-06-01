@@ -15,12 +15,12 @@ export class Trash extends Component {
       },
       {
         name: "node_modules",
-        icon: "./themes/Yaru/system/folder.png",
+        icon: "./ubuntu/themes/Yaru/system/folder.png",
       },
 
       {
         name: "abandoned project",
-        icon: "./themes/Yaru/system/folder.png",
+        icon: "./ubuntu/themes/Yaru/system/folder.png",
       },
       {
         name: "18BCP127 assignment name.zip",
@@ -28,11 +28,11 @@ export class Trash extends Component {
       },
       {
         name: "project final",
-        icon: "./themes/Yaru/system/folder.png",
+        icon: "./ubuntu/themes/Yaru/system/folder.png",
       },
       {
         name: "project ultra-final",
-        icon: "./themes/Yaru/system/folder.png",
+        icon: "./ubuntu/themes/Yaru/system/folder.png",
       },
     ];
     this.state = {
@@ -65,7 +65,7 @@ export class Trash extends Component {
       <div className="flex-grow flex flex-col justify-center items-center">
         <img
           className=" w-24"
-          src="./themes/Yaru/status/user-trash-symbolic.svg"
+          src="./ubuntu/themes/Yaru/status/user-trash-symbolic.svg"
           alt="Ubuntu Trash"
         />
         <span className="font-bold mt-4 text-xl px-1 text-gray-400">

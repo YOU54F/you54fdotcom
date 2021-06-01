@@ -66,7 +66,7 @@ export class StatusCard extends Component {
         <div className="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20">
           <div className="w-8">
             <img
-              src="./themes/Yaru/status/audio-headphones-symbolic.svg"
+              src="./ubuntu/themes/Yaru/status/audio-headphones-symbolic.svg"
               alt="ubuntu headphone"
             />
           </div>
@@ -80,7 +80,7 @@ export class StatusCard extends Component {
         <div className="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20">
           <div className="w-8">
             <img
-              src="./themes/Yaru/status/display-brightness-symbolic.svg"
+              src="./ubuntu/themes/Yaru/status/display-brightness-symbolic.svg"
               alt="ubuntu brightness"
             />
           </div>
@@ -97,7 +97,7 @@ export class StatusCard extends Component {
         <div className="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20">
           <div className="w-8">
             <img
-              src="./themes/Yaru/status/network-wireless-signal-good-symbolic.svg"
+              src="./ubuntu/themes/Yaru/status/network-wireless-signal-good-symbolic.svg"
               alt="ubuntu wifi"
             />
           </div>
@@ -109,7 +109,7 @@ export class StatusCard extends Component {
         <div className="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20">
           <div className="w-8">
             <img
-              src="./themes/Yaru/status/bluetooth-symbolic.svg"
+              src="./ubuntu/themes/Yaru/status/bluetooth-symbolic.svg"
               alt="ubuntu bluetooth"
             />
           </div>
@@ -121,7 +121,7 @@ export class StatusCard extends Component {
         <div className="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20">
           <div className="w-8">
             <img
-              src="./themes/Yaru/status/battery-good-symbolic.svg"
+              src="./ubuntu/themes/Yaru/status/battery-good-symbolic.svg"
               alt="ubuntu battery"
             />
           </div>
@@ -139,7 +139,7 @@ export class StatusCard extends Component {
         >
           <div className="w-8">
             <img
-              src="./themes/Yaru/status/emblem-system-symbolic.svg"
+              src="./ubuntu/themes/Yaru/status/emblem-system-symbolic.svg"
               alt="ubuntu settings"
             />
           </div>
@@ -153,7 +153,7 @@ export class StatusCard extends Component {
         >
           <div className="w-8">
             <img
-              src="./themes/Yaru/status/changes-prevent-symbolic.svg"
+              src="./ubuntu/themes/Yaru/status/changes-prevent-symbolic.svg"
               alt="ubuntu lock"
             />
           </div>
@@ -167,7 +167,7 @@ export class StatusCard extends Component {
         >
           <div className="w-8">
             <img
-              src="./themes/Yaru/status/system-shutdown-symbolic.svg"
+              src="./ubuntu/themes/Yaru/status/system-shutdown-symbolic.svg"
               alt="ubuntu power"
             />
           </div>
