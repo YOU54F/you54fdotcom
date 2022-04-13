@@ -15,7 +15,7 @@ export const gitBranch = process.env.REACT_APP_GIT_BRANCH_CI
   : "main";
 
 const storybookBaseUrl =
-  "https://www.chromatic.com/library?appId=60b56751c428f6003b9f26dd";
+  "https://www.chromatic.com/library?appId=625658c38d7d30003a4577c0";
 
 export const appContent: GeneralAppContent = {
   githubAuthorUrl: "https://github.com/you54f",
