@@ -128,7 +128,7 @@
     "@types/prettier": "^1.18.2",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.5",
-    "@types/react-helmet": "^5.0.15",
+    "@types/react-helmet": "^6.0.0",
     "@types/react-onclickoutside": "^6.7.3",
     "@types/react-redux": "^5.0.21",
     "@types/react-rnd": "^7.4.4",
