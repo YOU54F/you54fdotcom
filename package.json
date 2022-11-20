@@ -137,7 +137,7 @@
     "@types/react-syntax-highlighter": "^13.5.0",
     "@types/storybook-react-router": "^1.0.1",
     "@types/styled-components": "^4.4.2",
-    "autoprefixer": "^9",
+    "autoprefixer": "^10.0.0",
     "chromatic": "^5.8.3",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
